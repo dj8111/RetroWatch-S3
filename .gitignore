@@ -1,0 +1,27 @@
+# 構建輸出與臨時檔
+build/
+*.bin
+*.elf
+*.map
+sdkconfig
+sdkconfig.old
+
+# IDE 與編輯器設定
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.swp
+*~
+
+# 系統臨時文件
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# 敏感資訊
+*.key
+*.pem
+secrets.h
+wifi_credentials.h

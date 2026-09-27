@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 54" width="102mm" height="54mm">
+  <!-- 定義拉絲香檳金漸層背景與遮罩 -->
+  <defs>
+    <linearGradient id="champagneGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EED9B3" />
+      <stop offset="35%" stop-color="#E5C795" />
+      <stop offset="50%" stop-color="#F3E5CA" />
+      <stop offset="70%" stop-color="#D8B57D" />
+      <stop offset="100%" stop-color="#C9A368" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. 香檳金金屬銘板基底 (102 x 54 mm, R2 圓角) -->
+  <rect x="0" y="0" width="102" height="54" rx="2" ry="2" fill="url(#champagneGold)" stroke="#B89357" stroke-width="0.3" />
+
+  <!-- 2. 經典橘紅雙飾線 (任天堂 Game & Watch 風格) -->
+  <rect x="2" y="2" width="98" height="50" rx="1.5" ry="1.5" fill="none" stroke="#E63920" stroke-width="0.6" />
+  <rect x="2.8" y="2.8" width="96.4" height="48.4" rx="1.2" ry="1.2" fill="none" stroke="#333333" stroke-width="0.3" />
+
+  <!-- 3. 中央 2.0 吋螢幕開孔視窗 (41.0 x 31.0 mm, 中心位於原點 X=51.0, Y=27.0) -->
+  <!-- 黑色螢幕絲印邊框 -->
+  <rect x="28.5" y="9.5" width="45" height="35" rx="1" ry="1" fill="#1A1A1A" stroke="#E63920" stroke-width="0.5" />
+  <!-- 螢幕透明視窗實孔 (裁切線) -->
+  <rect x="30.5" y="11.5" width="41.0" height="31.0" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" stroke-dasharray="1,1" />
+
+  <!-- 4. 品牌標誌印刷：GAME & WATCH 復古粗體 -->
+  <text x="51.0" y="7.5" font-family="'Impact', 'Arial Black', sans-serif" font-size="3.6" font-weight="bold" fill="#222222" text-anchor="middle" letter-spacing="0.5">GAME &amp; WATCH</text>
+  <text x="51.0" y="47.5" font-family="'Courier New', monospace" font-size="2.2" font-weight="bold" fill="#E63920" text-anchor="middle" letter-spacing="0.8">RetroWatch-S3</text>
+
+  <!-- 5. 左側開孔裁切指示 (綠色虛線為沖壓裁切線) -->
+  <!-- 左上 POWER 開關開孔 (8.4 x 3.6mm, 中心 X=13.0, Y=44.5) -->
+  <rect x="8.8" y="7.7" width="8.4" height="3.6" rx="0.5" ry="0.5" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <text x="13.0" y="6.2" font-family="sans-serif" font-size="1.8" fill="#333333" text-anchor="middle">POWER</text>
+
+  <!-- 左側五向搖桿開孔 (直徑 8.5mm, 中心 X=13.0, Y=20.5) -->
+  <circle cx="13.0" cy="20.5" r="4.25" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+
+  <!-- 蜂鳴器 4 個出音孔 (直徑 1.3mm) -->
+  <circle cx="9.5" cy="48.2" r="0.65" fill="#111111" />
+  <circle cx="11.8" cy="48.2" r="0.65" fill="#111111" />
+  <circle cx="14.1" cy="48.2" r="0.65" fill="#111111" />
+  <circle cx="16.4" cy="48.2" r="0.65" fill="#111111" />
+
+  <!-- 6. 右側按鍵開孔裁切指示 -->
+  <!-- PAUSE 鍵 (6.0 x 2.8mm, 中心 X=83.0, Y=42.5) -->
+  <rect x="80.0" y="41.1" width="6.0" height="2.8" rx="1.4" ry="1.4" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <text x="83.0" y="39.5" font-family="sans-serif" font-size="1.8" font-weight="bold" fill="#333333" text-anchor="middle">PAUSE</text>
+
+  <!-- START 鍵 (6.0 x 2.8mm, 中心 X=94.0, Y=42.5) -->
+  <rect x="91.0" y="41.1" width="6.0" height="2.8" rx="1.4" ry="1.4" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <text x="94.0" y="39.5" font-family="sans-serif" font-size="1.8" font-weight="bold" fill="#333333" text-anchor="middle">START</text>
+
+  <!-- B 鍵 (直徑 7.6mm, 中心 X=84.0, Y=16.0) -->
+  <circle cx="84.0" cy="16.0" r="3.8" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <text x="84.0" y="24.0" font-family="sans-serif" font-size="3.0" font-weight="bold" fill="#B3241C" text-anchor="middle">B</text>
+
+  <!-- A 鍵 / 快門 (直徑 7.6mm, 中心 X=93.5, Y=23.5) -->
+  <circle cx="93.5" cy="23.5" r="3.8" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <text x="93.5" y="31.5" font-family="sans-serif" font-size="3.0" font-weight="bold" fill="#B3241C" text-anchor="middle">A</text>
+  <text x="93.5" y="17.5" font-family="sans-serif" font-size="1.6" fill="#666666" text-anchor="middle">SHUTTER</text>
+</svg>

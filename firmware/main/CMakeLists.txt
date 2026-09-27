@@ -1,0 +1,10 @@
+idf_component_register(SRCS "main.c"
+                            "gui_manager.c"
+                            "web_config_portal.c"
+                            "app_watch_mode.c"
+                            "app_camera_mode.c"
+                            "app_dashcam_mode.c"
+                            "app_ipcam_mode.c"
+                            "app_game_mode.c"
+                       INCLUDE_DIRS "."
+                       REQUIRES bsp_inputs bsp_audio esp_adc esp_timer driver nvs_flash esp_wifi esp_http_server)
