@@ -141,6 +141,10 @@ module rear_case() {
                 translate([-0.6, 0, 1.4]) cube([0.7, 6.0, 0.8]);
             }
 
+            // 右下角【手繩吊飾孔加強座】(增加局部壁厚至 2.7mm，承受衝擊抗拉力 >10kg)
+            translate([case_w - wall - 1.2, 2.5, wall])
+                cube([1.2, 6.2, 3.5]);
+
             // 右側螺絲導向柱 (與前殼螺母柱對位配合，內徑 2.3mm)
             translate([case_w - 6.0, 12.0, wall])
                 cylinder(d=4.6, h=rear_thick - wall);
@@ -178,9 +182,19 @@ module rear_case() {
         translate([-1.0, 12.0 - 9.2/2, rear_thick - 1.2])
             cube([wall + 2.0, 9.2, 1.3]);
 
-        // 右側手繩吊飾孔 (開孔於右側壁 X=104.0, Y=12.0)
-        translate([case_w - wall - 1.0, 12.0 - 5.6/2, rear_thick - 2.4])
-            cube([wall + 2.0, 5.6, 2.4]);
+        // 右下角【手繩吊飾孔系統 (Dual-Eyelet Lanyard Loop)】
+        // 1. 外側防磨沉槽 (深 1.0mm, 長 6.8mm, 寬 2.6mm，手繩沉入側面不刮掌心)
+        translate([case_w - 1.0, 5.5 - 6.8/2, 1.4])
+            cube([1.5, 6.8, 2.6]);
+
+        // 2. 雙穿繩通孔 (直徑 2.2mm x 2，孔 1: Y=3.6, 孔 2: Y=7.4，中置 1.6mm 加強耐拉橫柱)
+        // 穿繩方式：手環帶細繩由孔 1 穿入、繞過加強橫柱由孔 2 穿出，即可牢固吊掛手環帶！
+        translate([case_w - wall - 2.0, 3.6, 2.7])
+            rotate([0, 90, 0])
+                cylinder(d=2.2, h=wall + 3.0);
+        translate([case_w - wall - 2.0, 7.4, 2.7])
+            rotate([0, 90, 0])
+                cylinder(d=2.2, h=wall + 3.0);
 
         // 右側 M2 沉頭螺絲貫通孔 (2 處，沉頭直徑 4.2mm, 深 1.5mm, 螺絲通孔 2.3mm)
         translate([case_w - 6.0, 12.0, -0.2]) {
