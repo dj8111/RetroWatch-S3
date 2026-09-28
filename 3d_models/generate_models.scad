@@ -177,17 +177,35 @@ module rear_case() {
             translate([-1.0, 12.0 - 9.2/2, z_parting - 0.1])
                 cube([wall + 2.0, 9.2, 1.3]);
 
-            // 右側【重型手繩吊飾孔系統 (Anti-Snap Lanyard Loop)】
-            // 側面防磨沉槽 (深 1.0mm, 長 7.8mm, 寬 2.6mm)
-            translate([case_w - 1.0, 5.5 - 7.8/2, z_back - 2.8])
-                cube([1.5, 7.8, 3.0]);
-            // 雙穿繩通孔 (直徑 2.2mm，中心 Y=3.2 與 Y=7.8，中置 2.4mm 超粗防扯橫柱)
-            translate([case_w - wall - 3.0, 3.2, z_back - 3.2])
+            // ==================================================================
+            // 左右兩側上角落【雙側重型手機吊飾孔系統 (Dual Side-Wall Lanyard Loops)】
+            // 位於左右兩側面頂端角落 (Y=51.5)，左右完全對稱出線！
+            // 支援雙扣頸掛相機背帶、左/右手腕帶，胸前懸掛時垂直水平下垂，鏡頭正對前方！
+            // ==================================================================
+
+            // 1. 右側面上角落吊飾孔 (Right-Top Corner Lanyard Loop)
+            // 側面防磨沉槽 (深 1.0mm, 長 6.4mm, 寬 2.8mm, 中心 Y=51.5)
+            translate([case_w - 1.0, 51.5 - 6.4/2, z_back - 2.8])
+                cube([1.5, 6.4, 3.0]);
+            // 雙穿繩通孔 (直徑 2.0mm，中心 Y=49.5 與 Y=53.5，中置 2.0mm 超粗防扯橫柱)
+            translate([case_w - wall - 3.0, 49.5, z_back - 3.2])
                 rotate([0, 90, 0])
-                    cylinder(d=2.2, h=wall + 4.0);
-            translate([case_w - wall - 3.0, 7.8, z_back - 3.2])
+                    cylinder(d=2.0, h=wall + 4.0);
+            translate([case_w - wall - 3.0, 53.5, z_back - 3.2])
                 rotate([0, 90, 0])
-                    cylinder(d=2.2, h=wall + 4.0);
+                    cylinder(d=2.0, h=wall + 4.0);
+
+            // 2. 左側面上角落吊飾孔 (Left-Top Corner Lanyard Loop，鏡面對稱)
+            // 側面防磨沉槽 (深 1.0mm, 長 6.4mm, 寬 2.8mm, 中心 Y=51.5)
+            translate([-0.5, 51.5 - 6.4/2, z_back - 2.8])
+                cube([1.5, 6.4, 3.0]);
+            // 雙穿繩通孔 (直徑 2.0mm，中心 Y=49.5 與 Y=53.5，中置 2.0mm 超粗防扯橫柱)
+            translate([-1.0, 49.5, z_back - 3.2])
+                rotate([0, 90, 0])
+                    cylinder(d=2.0, h=wall + 4.0);
+            translate([-1.0, 53.5, z_back - 3.2])
+                rotate([0, 90, 0])
+                    cylinder(d=2.0, h=wall + 4.0);
 
             // 右側 M2 沉頭螺絲貫通孔 (2 處，沉頭直徑 4.2mm 深 1.5mm，螺絲通孔 2.3mm)
             // 完全對齊前殼螺母柱 X=case_w-6.0 (114.0mm)，Y=12.0 與 Y=case_h-7.5 (48.5mm)！
@@ -246,12 +264,21 @@ module rear_case() {
                 cylinder(d=10.2, h=3.5);
         }
 
-        // --- 2.5 手繩孔底板局部加厚三角肋 ---
-        translate([case_w - wall - 1.8, 2.0, z_back - wall - 2.5])
-            cube([1.8, 7.8, 2.5]);
+        // --- 2.5 雙側手繩孔底板局部加厚三角強化肋 (左右對稱抗拉 >15kg) ---
+        // 1. 右側面上角落三角強化肋
+        translate([case_w - wall - 1.8, 48.3, z_back - wall - 2.2])
+            cube([1.8, 6.4, 2.2]);
         hull() {
-            translate([case_w - wall - 1.8, 2.0, z_back - wall - 2.5]) cube([1.8, 1.2, 2.5]);
-            translate([case_w - wall - 4.5, 2.0, z_back - wall - 0.5]) cube([1.0, 1.2, 0.5]);
+            translate([case_w - wall - 1.8, 48.3, z_back - wall - 2.2]) cube([1.8, 1.2, 2.2]);
+            translate([case_w - wall - 4.0, 48.3, z_back - wall - 0.5]) cube([1.0, 1.2, 0.5]);
+        }
+
+        // 2. 左側面上角落三角強化肋
+        translate([wall, 48.3, z_back - wall - 2.2])
+            cube([1.8, 6.4, 2.2]);
+        hull() {
+            translate([wall, 48.3, z_back - wall - 2.2]) cube([1.8, 1.2, 2.2]);
+            translate([wall + 3.0, 48.3, z_back - wall - 0.5]) cube([1.0, 1.2, 0.5]);
         }
     }
 }
