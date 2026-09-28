@@ -63,6 +63,11 @@ module front_case() {
         translate([case_w/2 - 52.0/2, 27.0 - 39.5/2, -0.1])
             cube([52.0, 39.5, 1.0 + 0.1]);
 
+        // 【BATTERY 電源/電量指示燈貫穿孔】(直徑 2.0mm, 中心 X=28.0, Y=31.0)
+        // 貫通前殼，對齊面板貼紙 BATTERY 標記，可裝入 2mm 導光柱或露出內部 LED
+        translate([28.0, 31.0, -1.0])
+            cylinder(d=2.0, h=front_thick + 2.0);
+
         // 五向導航搖桿開孔 (直徑 8.5mm, 中心 X=17.0, Y=22.0)
         translate([17.0, 22.0, -1.0])
             cylinder(d=8.5, h=front_thick + 2.0);
@@ -71,20 +76,20 @@ module front_case() {
         translate([17.0 - 8.4/2, 45.5 - 3.6/2, -1.0])
             cube([8.4, 3.6, front_thick + 2.0]);
 
-        // A 鍵圓形開孔 (直徑 7.6mm, 中心 X=103.5, Y=26.0)
-        translate([103.5, 26.0, -1.0])
+        // A 鍵圓形開孔 (直徑 7.6mm, 中心 X=105.0, Y=26.0)
+        translate([105.0, 26.0, -1.0])
             cylinder(d=7.6, h=front_thick + 2.0);
 
-        // B 鍵圓形開孔 (直徑 7.6mm, 中心 X=93.0, Y=18.0)
-        translate([93.0, 18.0, -1.0])
+        // B 鍵圓形開孔 (直徑 7.6mm, 中心 X=95.0, Y=18.0)
+        translate([95.0, 18.0, -1.0])
             cylinder(d=7.6, h=front_thick + 2.0);
 
-        // PAUSE 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=91.0, Y=43.5)
-        translate([91.0 - 3.0, 43.5 - 1.4, -1.0])
+        // PAUSE 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=94.0, Y=43.5)
+        translate([94.0 - 3.0, 43.5 - 1.4, -1.0])
             cube([6.0, 2.8, front_thick + 2.0]);
 
-        // START 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=103.0, Y=43.5)
-        translate([103.0 - 3.0, 43.5 - 1.4, -1.0])
+        // START 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=106.0, Y=43.5)
+        translate([106.0 - 3.0, 43.5 - 1.4, -1.0])
             cube([6.0, 2.8, front_thick + 2.0]);
 
         // 左側 Type-C 沉板側槽 (9.2 x 3.4mm, 中心 X=0.0, Y=12.0)
