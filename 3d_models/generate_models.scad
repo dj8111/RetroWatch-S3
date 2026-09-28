@@ -109,33 +109,43 @@ module front_case() {
 module rear_case() {
     difference() {
         union() {
-            // 後蓋主體
+            // 後蓋主體外框 (外表面 Z=0 平整無凸起，背部平順好握持且放在桌上不晃動)
             rounded_box(case_w, case_h, rear_thick, corner_r);
 
-            // 背面相機火山口保護環 (外徑 12.2mm，高出後蓋 1.0mm)
-            translate([case_w/2, 40.0, -1.0])
-                cylinder(d=12.2, h=1.0);
+            // 【相機保護環直接設計在機殼裡面】
+            // 內置鏡頭防護遮光套筒 (外徑 12.6mm，從內壁 Z=wall 向上延伸 3.2mm)
+            // 功能：1. 物理隔離電池與走線擠壓鏡頭模組與軟排線 2. 阻絕內部 LED 雜散光 3. 鏡頭精準定位
+            translate([case_w/2, 40.0, wall])
+                cylinder(d=12.6, h=3.2);
 
-            // 左側雙平推插舌 (寬 8.0mm, 厚 1.2mm, 伸出 2.5mm)
+            // 左側雙平推插舌 (寬 8.0mm, 厚 1.2mm, 伸出 2.5mm，位於分模面)
             translate([-2.5, 15.1, rear_thick - 1.2]) cube([2.5, 8.0, 1.2]);
             translate([-2.5, 35.1, rear_thick - 1.2]) cube([2.5, 8.0, 1.2]);
         }
 
-        // 內部挖空 (內艙)
-        translate([wall, wall, -0.1])
-            rounded_box(case_w - wall*2, case_h - wall*2, rear_thick - wall + 0.1, corner_r - 0.5);
+        // 內部挖空 (內艙，Z=wall 至頂部敞開)
+        translate([wall, wall, wall])
+            rounded_box(case_w - wall*2, case_h - wall*2, rear_thick, corner_r - 0.5);
 
-        // 鏡頭光學視窗孔 (通孔直徑 8.0mm)
-        translate([case_w/2, 40.0, -2.0])
-            cylinder(d=8.0, h=rear_thick + 4.0);
+        // 鏡頭光學視窗孔 (通孔直徑 8.0mm，貫穿外殼)
+        translate([case_w/2, 40.0, -1.0])
+            cylinder(d=8.0, h=rear_thick + 5.0);
 
-        // 鏡頭光學鏡片沉台 (內徑 10.2mm, 深 1.3mm，鏡片內陷 0.3mm 懸空抗刮)
-        translate([case_w/2, 40.0, -1.1])
-            cylinder(d=10.2, h=1.3);
+        // 機殼內部鏡頭模組容納槽 (內徑 10.2mm，深入內置保護環套筒內)
+        translate([case_w/2, 40.0, wall - 0.1])
+            cylinder(d=10.2, h=3.4);
 
-        // 背面折疊金屬支架凹槽 (44.0 x 20.0 x 1.5mm)
+        // 背面鏡片微沉台 (沉孔直徑 9.6mm, 深度 0.6mm，放入鏡片後完全與外殼平齊抗刮)
+        translate([case_w/2, 40.0, -0.1])
+            cylinder(d=9.6, h=0.6 + 0.1);
+
+        // 背面折疊金屬支架凹槽 (44.0 x 20.0 x 1.0mm)
         translate([(case_w - 44.0)/2, 8.0, -0.1])
-            cube([44.0, 20.0, 1.5 + 0.1]);
+            cube([44.0, 20.0, 1.0 + 0.1]);
+
+        // 左側 Type-C 下半部對位側槽 (與前殼 Type-C 口咬合成 4.6mm 完整插拔視窗)
+        translate([-1.0, 12.0 - 9.2/2, rear_thick - 1.2])
+            cube([wall + 2.0, 9.2, 1.3]);
 
         // 右側手繩吊飾孔 (開孔於右側壁 X=104.0, Y=12.0)
         translate([case_w - wall - 1.0, 12.0 - 5.6/2, rear_thick - 2.4])
