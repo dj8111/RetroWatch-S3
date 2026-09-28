@@ -30,12 +30,25 @@ module rounded_box(w, h, d, r) {
 // ==============================================================================
 module front_case() {
     difference() {
-        // 主外殼實體
-        rounded_box(case_w, case_h, front_thick, corner_r);
+        union() {
+            // 主外殼實體 (外形 104.0 x 56.0 x 6.5 mm)
+            rounded_box(case_w, case_h, front_thick, corner_r);
 
-        // 內部挖空 (內艙)
+            // 全周結合止口 (子口凸緣，高出分模面 1.2mm，厚度 0.75mm，帶內外 0.15mm 列印公差)
+            // 與後蓋母口全周咬合，徹底防止上下殼錯位與接縫漏光
+            translate([wall - 0.75, wall - 0.75, front_thick - 0.1])
+                rounded_box(case_w - 2*(wall - 0.75), case_h - 2*(wall - 0.75), 1.2 + 0.1, corner_r - 0.5);
+
+            // 右側 M2 滾花銅螺母柱 (2 處，外徑 4.8mm，內徑 3.0mm，熱熔固定 M2x3.0 螺母)
+            translate([case_w - 6.0, 12.0, wall])
+                cylinder(d=4.8, h=front_thick - wall);
+            translate([case_w - 6.0, case_h - 12.0, wall])
+                cylinder(d=4.8, h=front_thick - wall);
+        }
+
+        // 內部挖空 (內艙，挖通至止口頂端)
         translate([wall, wall, wall])
-            rounded_box(case_w - wall*2, case_h - wall*2, front_thick, corner_r - 0.5);
+            rounded_box(case_w - wall*2, case_h - wall*2, front_thick + 2.0, corner_r - 0.5);
 
         // 正面銘板沉台凹槽 (102 x 54, 深 0.55mm)
         translate([(case_w - 102)/2, (case_h - 54)/2, -0.1])
@@ -75,7 +88,7 @@ module front_case() {
 
         // 左側 Type-C 沉板側槽 (9.2 x 3.4mm, 中心 X=0.0, Y=12.0)
         translate([-1.0, 12.0 - 9.2/2, front_thick - 3.4])
-            cube([wall + 2.0, 9.2, 3.4 + 1.0]);
+            cube([wall + 2.0, 9.2, 3.4 + 1.5]);
 
         // 蜂鳴器出音陣列小孔 (直徑 1.3mm x 4 顆)
         for (i = [0:3]) {
@@ -83,23 +96,17 @@ module front_case() {
                 cylinder(d=1.3, h=front_thick + 2.0);
         }
 
-        // 左側卡榫滑槽 (配對後蓋插舌: 寬 8.2mm, 深 2.6mm, 高 1.4mm)
-        translate([wall - 0.1, 15.0, front_thick - 1.4]) cube([2.6, 8.2, 1.5]);
-        translate([wall - 0.1, 35.0, front_thick - 1.4]) cube([2.6, 8.2, 1.5]);
-    }
+        // 左側【內部卡扣卡槽】 (完全位於內壁 X=wall，不外露！Y=18.0 與 Y=36.0)
+        translate([wall - 0.7, 18.0 - 3.5, front_thick - 1.8])
+            cube([1.2, 7.0, 1.6]);
+        translate([wall - 0.7, 36.0 - 3.5, front_thick - 1.8])
+            cube([1.2, 7.0, 1.6]);
 
-    // 右側 M2 滾花銅螺母柱 (2 處，外徑 4.8mm，內徑 3.0mm，熱熔固定)
-    translate([case_w - 6.0, 12.0, wall]) {
-        difference() {
-            cylinder(d=4.8, h=front_thick - wall);
-            cylinder(d=3.0, h=front_thick - wall + 0.1);
-        }
-    }
-    translate([case_w - 6.0, case_h - 12.0, wall]) {
-        difference() {
-            cylinder(d=4.8, h=front_thick - wall);
-            cylinder(d=3.0, h=front_thick - wall + 0.1);
-        }
+        // 右側熱熔螺母底孔 (直徑 3.0mm, 深 4.5mm)
+        translate([case_w - 6.0, 12.0, front_thick - 4.5])
+            cylinder(d=3.0, h=5.0);
+        translate([case_w - 6.0, case_h - 12.0, front_thick - 4.5])
+            cylinder(d=3.0, h=5.0);
     }
 }
 
@@ -109,41 +116,65 @@ module front_case() {
 module rear_case() {
     difference() {
         union() {
-            // 後蓋主體外框 (外表面 Z=0 平整無凸起，背部平順好握持且放在桌上不晃動)
+            // 後蓋主體外框 (104.0 x 56.0 x 6.0 mm)
             rounded_box(case_w, case_h, rear_thick, corner_r);
 
-            // 【相機保護環直接設計在機殼裡面】
-            // 內置鏡頭防護遮光套筒 (外徑 12.6mm，從內壁 Z=wall 向上延伸 3.2mm)
-            // 功能：1. 物理隔離電池與走線擠壓鏡頭模組與軟排線 2. 阻絕內部 LED 雜散光 3. 鏡頭精準定位
-            translate([case_w/2, 40.0, wall])
-                cylinder(d=12.6, h=3.2);
+            // 【對外突出相機火山口保護環 (External Raised Volcano Ring)】
+            // 凸出於背蓋外表面 1.2mm，外徑 12.5mm，平放桌面時牢牢保護光學玻璃防刮傷！
+            translate([case_w/2, 40.0, -1.2])
+                cylinder(d=12.5, h=1.2);
 
-            // 左側雙平推插舌 (寬 8.0mm, 厚 1.2mm, 伸出 2.5mm，位於分模面)
-            translate([-2.5, 15.1, rear_thick - 1.2]) cube([2.5, 8.0, 1.2]);
-            translate([-2.5, 35.1, rear_thick - 1.2]) cube([2.5, 8.0, 1.2]);
+            // 【內部鏡頭定位與防護遮光套筒】
+            // 向機身內艙延伸 2.5mm，外徑 12.5mm，完全包覆 OV5640 鏡頭模組並隔絕內部電池與走線
+            translate([case_w/2, 40.0, wall])
+                cylinder(d=12.5, h=2.5);
+
+            // 【左側內部卡榫倒勾爪 (Internal Snap-fit Claws)】
+            // 完全位於機殼內部 (X=wall ~ wall+1.8mm)，向前殼方向延伸 2.2mm
+            // 組裝時左側由內側先斜向扣入前殼卡槽，再蓋下右側鎖螺絲，外觀平整無外露卡榫！
+            translate([wall, 18.0 - 3.0, rear_thick - 0.1]) {
+                cube([1.4, 6.0, 2.2]); // 懸臂彈性爪身
+                translate([-0.6, 0, 1.4]) cube([0.7, 6.0, 0.8]); // 倒勾卡扣牙
+            }
+            translate([wall, 36.0 - 3.0, rear_thick - 0.1]) {
+                cube([1.4, 6.0, 2.2]);
+                translate([-0.6, 0, 1.4]) cube([0.7, 6.0, 0.8]);
+            }
+
+            // 右側螺絲導向柱 (與前殼螺母柱對位配合，內徑 2.3mm)
+            translate([case_w - 6.0, 12.0, wall])
+                cylinder(d=4.6, h=rear_thick - wall);
+            translate([case_w - 6.0, case_h - 12.0, wall])
+                cylinder(d=4.6, h=rear_thick - wall);
         }
 
-        // 內部挖空 (內艙，Z=wall 至頂部敞開)
+        // 內部挖空 (內艙)
         translate([wall, wall, wall])
-            rounded_box(case_w - wall*2, case_h - wall*2, rear_thick, corner_r - 0.5);
+            rounded_box(case_w - wall*2, case_h - wall*2, rear_thick + 0.1, corner_r - 0.5);
+
+        // 全周結合母口凹槽 (與前殼子口止口咬合，寬 0.95mm，深 1.3mm)
+        translate([wall - 0.8, wall - 0.8, rear_thick - 1.3])
+            rounded_box(case_w - 2*(wall - 0.8), case_h - 2*(wall - 0.8), 1.4, corner_r - 0.5);
 
         // 鏡頭光學視窗孔 (通孔直徑 8.0mm，貫穿外殼)
-        translate([case_w/2, 40.0, -1.0])
-            cylinder(d=8.0, h=rear_thick + 5.0);
+        translate([case_w/2, 40.0, -2.0])
+            cylinder(d=8.0, h=rear_thick + 6.0);
 
-        // 機殼內部鏡頭模組容納槽 (內徑 10.2mm，深入內置保護環套筒內)
+        // 機殼內部鏡頭模組容納腔 (內徑 10.2mm，深 2.6mm，容納 OV5640 模組)
         translate([case_w/2, 40.0, wall - 0.1])
-            cylinder(d=10.2, h=3.4);
+            cylinder(d=10.2, h=3.0);
 
-        // 背面鏡片微沉台 (沉孔直徑 9.6mm, 深度 0.6mm，放入鏡片後完全與外殼平齊抗刮)
-        translate([case_w/2, 40.0, -0.1])
-            cylinder(d=9.6, h=0.6 + 0.1);
+        // 【火山口內部鏡片沉台 (Recessed Lens Shelf)】
+        // 位於火山口內，直徑 10.2mm，沉深 1.4mm (相對於火山口頂端)
+        // 裝入 1.0mm 防刮光學玻璃後，鏡片表面比外凸火山口內陷 0.2mm，徹底防刮！
+        translate([case_w/2, 40.0, -1.3])
+            cylinder(d=10.2, h=1.4);
 
         // 背面折疊金屬支架凹槽 (44.0 x 20.0 x 1.0mm)
         translate([(case_w - 44.0)/2, 8.0, -0.1])
             cube([44.0, 20.0, 1.0 + 0.1]);
 
-        // 左側 Type-C 下半部對位側槽 (與前殼 Type-C 口咬合成 4.6mm 完整插拔視窗)
+        // 左側 Type-C 咬合開孔
         translate([-1.0, 12.0 - 9.2/2, rear_thick - 1.2])
             cube([wall + 2.0, 9.2, 1.3]);
 
@@ -151,14 +182,14 @@ module rear_case() {
         translate([case_w - wall - 1.0, 12.0 - 5.6/2, rear_thick - 2.4])
             cube([wall + 2.0, 5.6, 2.4]);
 
-        // 右側 M2 沉頭螺絲貫通孔 (2 處，沉頭直徑 4.2mm, 深 1.5mm, 通孔 2.3mm)
-        translate([case_w - 6.0, 12.0, -0.1]) {
-            cylinder(d=4.2, h=1.5);
-            cylinder(d=2.3, h=rear_thick + 1.0);
+        // 右側 M2 沉頭螺絲貫通孔 (2 處，沉頭直徑 4.2mm, 深 1.5mm, 螺絲通孔 2.3mm)
+        translate([case_w - 6.0, 12.0, -0.2]) {
+            cylinder(d=4.2, h=1.6);
+            cylinder(d=2.3, h=rear_thick + 2.0);
         }
-        translate([case_w - 6.0, case_h - 12.0, -0.1]) {
-            cylinder(d=4.2, h=1.5);
-            cylinder(d=2.3, h=rear_thick + 1.0);
+        translate([case_w - 6.0, case_h - 12.0, -0.2]) {
+            cylinder(d=4.2, h=1.6);
+            cylinder(d=2.3, h=rear_thick + 2.0);
         }
     }
 }
@@ -212,19 +243,20 @@ if (view_mode == "side_by_side") {
             joystick_ball_cap();
 
 } else if (view_mode == "exploded") {
-    // 2. 立體爆炸裝配展示：前殼在下、街機搖桿套頭浮空對位、後蓋在上
+    // 2. 立體爆炸裝配展示：前殼在下、街機搖桿套頭浮空對位、後蓋在上翻轉扣合
     color([0.22, 0.22, 0.25, 0.85]) 
         front_case();
     
     // 街機圓球搖桿套頭浮空對位 (X=14.0, Y=21.5)
     color([0.85, 0.1, 0.1, 1.0]) 
-        translate([14.0, 21.5, 4.0]) 
+        translate([14.0, 21.5, 5.0]) 
             joystick_ball_cap();
     
-    // 後蓋翻轉浮空展示
+    // 後蓋以真機裝配姿態浮空展示 (上下殼相對扣合，內卡榫在左、螺絲孔在右、火山口朝上)
     color([0.28, 0.28, 0.32, 0.85]) 
-        translate([0, 0, 25.0]) 
-            rear_case();
+        translate([0, 0, front_thick + rear_thick + 20.0]) 
+            mirror([0, 0, 1]) 
+                rear_case();
 
 } else if (view_mode == "front_only") {
     // 3. 單獨前殼 (按 F6 渲染後可直接匯出 front_case.stl)
