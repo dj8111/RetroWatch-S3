@@ -60,22 +60,22 @@ void bsp_audio_play_tone(uint32_t freq_hz, uint32_t duration_ms) {
     ledc_update_duty(LEDC_MODE, LEDC_CHANNEL);
 }
 
-// 相機快門雙頻聲仿真 (2.4kHz 轉 1.2kHz 階躍音)
+// 相機快門雙頻聲仿真 (4.0kHz 諧振高頻轉 2.0kHz 階躍音，發揮 9018 壓電蜂鳴器 65dB 最大聲壓)
 void bsp_audio_shutter_click(void) {
-    bsp_audio_play_tone(2400, 18);
+    bsp_audio_play_tone(4000, 18);
     vTaskDelay(pdMS_TO_TICKS(5));
-    bsp_audio_play_tone(1200, 25);
+    bsp_audio_play_tone(2000, 25);
 }
 
 // 開機復古 8-bit 和弦音
 void bsp_audio_boot_melody(void) {
-    bsp_audio_play_tone(523, 70); // C5
-    bsp_audio_play_tone(659, 70); // E5
-    bsp_audio_play_tone(784, 70); // G5
+    bsp_audio_play_tone(523, 70);  // C5
+    bsp_audio_play_tone(659, 70);  // E5
+    bsp_audio_play_tone(784, 70);  // G5
     bsp_audio_play_tone(1046, 120); // C6
 }
 
-// 按鍵微小點擊反饋音
+// 按鍵微小點擊反饋音 (4000Hz 諧振微脈衝)
 void bsp_audio_button_tick(void) {
-    bsp_audio_play_tone(1800, 8);
+    bsp_audio_play_tone(4000, 8);
 }

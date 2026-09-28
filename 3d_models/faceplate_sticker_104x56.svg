@@ -17,11 +17,11 @@
   <rect x="2" y="2" width="98" height="50" rx="1.5" ry="1.5" fill="none" stroke="#E63920" stroke-width="0.6" />
   <rect x="2.8" y="2.8" width="96.4" height="48.4" rx="1.2" ry="1.2" fill="none" stroke="#333333" stroke-width="0.3" />
 
-  <!-- 3. 中央 2.0 吋螢幕開孔視窗 (41.0 x 31.0 mm, 中心位於原點 X=51.0, Y=27.0) -->
+  <!-- 3. 中央 2.4 吋螢幕開孔視窗 (50.0 x 37.5 mm, 中心位於原點 X=51.0, Y=27.0) -->
   <!-- 黑色螢幕絲印邊框 -->
-  <rect x="28.5" y="9.5" width="45" height="35" rx="1" ry="1" fill="#1A1A1A" stroke="#E63920" stroke-width="0.5" />
+  <rect x="24.0" y="6.5" width="54.0" height="41.0" rx="1" ry="1" fill="#1A1A1A" stroke="#E63920" stroke-width="0.5" />
   <!-- 螢幕透明視窗實孔 (裁切線) -->
-  <rect x="30.5" y="11.5" width="41.0" height="31.0" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" stroke-dasharray="1,1" />
+  <rect x="26.0" y="8.25" width="50.0" height="37.5" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" stroke-dasharray="1,1" />
 
   <!-- 4. 品牌標誌印刷：GAME & WATCH 復古粗體 -->
   <text x="51.0" y="7.5" font-family="'Impact', 'Arial Black', sans-serif" font-size="3.6" font-weight="bold" fill="#222222" text-anchor="middle" letter-spacing="0.5">GAME &amp; WATCH</text>

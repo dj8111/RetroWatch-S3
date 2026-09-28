@@ -10,17 +10,17 @@ extern "C" {
 #endif
 
 // ==============================================================================
-// 1. 硬體 GPIO 引腳終極映射表 (避開 Octal PSRAM GPIO 33~37)
+// 1. 硬體 GPIO 引腳終極映射表 (ESP32-S3-N16R8 CAM 開發板 + 2.4" LCD 專用)
 // ==============================================================================
-// ST7789 2.0" IPS LCD (SPI2/FSPI)
-#define PIN_LCD_MOSI        38
-#define PIN_LCD_SCLK        39
-#define PIN_LCD_CS          40
-#define PIN_LCD_DC          41
-#define PIN_LCD_RST         42
-#define PIN_LCD_BL          45
+// 金逸晨 2.4" TFT LCD ST7789 (8-Pin 藍板 SPI 模組)
+#define PIN_LCD_SCLK        41  // 硬體 SPI 時鐘 (SCL)
+#define PIN_LCD_MOSI        42  // 硬體 SPI 數據 (SDA)
+#define PIN_LCD_DC          45  // 數據 / 命令選擇 (DC)
+#define PIN_LCD_RST         46  // 螢幕復位 (RES，可接 GPIO 46 或直接接主板 EN 腳)
+#define PIN_LCD_CS          -1  // 片選 (CS 直接在螢幕藍板短接 GND，永久致能，省 1 根線)
+#define PIN_LCD_BL          -1  // 背光 (BLK 直接在螢幕藍板短接 3.3V 全亮，省 1 根線)
 
-// OV5640 5MP 相機 (DVP 24-Pin)
+// OV5640 5MP 相機 (ESP32-S3-CAM 板載 24-Pin FPC 翻蓋座，免焊直插)
 #define PIN_CAM_D0          11
 #define PIN_CAM_D1          9
 #define PIN_CAM_D2          8
@@ -33,25 +33,31 @@ extern "C" {
 #define PIN_CAM_PCLK        13
 #define PIN_CAM_VSYNC       6
 #define PIN_CAM_HREF        7
-#define PIN_CAM_SIOD        47
-#define PIN_CAM_SIOC        48
+#define PIN_CAM_SIOD        4   // SCCB SDA
+#define PIN_CAM_SIOC        5   // SCCB SCL
 
-// MicroSD (TF) 卡槽
-#define PIN_SD_CLK          43
-#define PIN_SD_CMD          44
-#define PIN_SD_D0           20
+// MicroSD (TF) 卡槽 (ESP32-S3-CAM 板載插槽，SDMMC 1-Bit 模式，免焊直插)
+#define PIN_SD_CLK          38
+#define PIN_SD_CMD          39
+#define PIN_SD_D0           40
 
-// 使用者按鍵輸入
-#define PIN_NAV_ADC         1   // 五向導航 (ADC1_CH0 梯形分壓)
-#define PIN_BTN_A           4   // A 鍵 / 拍照快門
-#define PIN_BTN_B           5   // B 鍵 / 返回
-#define PIN_BTN_START       21  // START 鍵
-#define PIN_BTN_PAUSE       14  // PAUSE 鍵 / Wi-Fi AP 傳圖長按
+// 使用者按鍵輸入 (五向導航開關「個別接線」+ 內部上拉，按下接地，零分壓電阻)
+#define PIN_NAV_UP          1   // 五向鍵 - 上 (UP)
+#define PIN_NAV_DOWN        2   // 五向鍵 - 下 (DOWN)
+#define PIN_NAV_LEFT        3   // 五向鍵 - 左 (LEFT)
+#define PIN_NAV_RIGHT       14  // 五向鍵 - 右 (RIGHT)
+#define PIN_NAV_CENTER      21  // 五向鍵 - 中 (PRESS/OK)
 
-// 蜂鳴器與電源管理
-#define PIN_BUZZER_PWM      2   // S8050 NPN 蜂鳴器驅動
-#define PIN_BATT_ADC        3   // 電池電壓 1/2 分壓 (ADC1_CH2)
-#define PIN_VBUS_DET        46  // Type-C 5V 插入偵測 (高電位=插電)
+// 動作微動開關 (內部上拉，按下接地)
+#define PIN_BTN_A           44  // A 鍵 / 拍照快門 (板載 RX 引腳)
+#define PIN_BTN_B           47  // B 鍵 / 返回
+#define PIN_BTN_START       48  // START 鍵 / 主選單
+#define PIN_BTN_PAUSE       0   // PAUSE 鍵 / 長按 AP 傳圖 (相容板載 BOOT 按鍵或外接微動)
+
+// 蜂鳴器 (9018 貼片無源壓電式蜂鳴器，LEDC PWM 直驅，免外接三極管)
+#define PIN_BUZZER_PWM      43  // 蜂鳴器 PWM 輸出 (板載 TX 引腳)
+#define PIN_BATT_ADC        -1  // 電池電壓監測 (可選)
+#define PIN_VBUS_DET        -1  // USB 供電自動偵測
 
 // ==============================================================================
 // 2. 系統模式列舉 (五合一架構)

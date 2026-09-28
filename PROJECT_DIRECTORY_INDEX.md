@@ -32,8 +32,8 @@ c:\Dev\微型復古多功能掌機\
     │   ├── app_ipcam_mode.c              # 智慧居家遠端監控 (HTTP MJPEG 串流、移動偵測警報)
     │   └── app_game_mode.c               # 懷舊遊戲機模擬器 (Retro-Go 核心移植適配)
     └── components/
-        ├── bsp_inputs/                   # 單線 ADC 梯形阻壓解碼驅動 (1根線搞定五向導航)
-        └── bsp_audio/                    # 無源蜂鳴器 LEDC PWM 驅動 (快門音、開機和弦、PSG方波)
+        ├── bsp_inputs/                   # 五向導航個別獨立接線 (5根獨立線+內部上拉，零分壓電阻)
+        └── bsp_audio/                    # 9018 無源壓電蜂鳴器 LEDC PWM 直驅 (快門音、開機和弦、PSG方波)
 ```
 
 ---
@@ -63,8 +63,8 @@ c:\Dev\微型復古多功能掌機\
   * [app_ipcam_mode.c](firmware/main/app_ipcam_mode.c)：HTTP MJPEG 影像串流、雙核邊緣移動偵測與警報。
   * [app_game_mode.c](firmware/main/app_game_mode.c)：Retro-Go 模擬器載入。
 * **底層硬體驅動組件**：
-  * [bsp_inputs.c](firmware/components/bsp_inputs/bsp_inputs.c)：五向單線 ADC 梯形阻壓網絡解碼與防抖。
-  * [bsp_audio.c](firmware/components/bsp_audio/bsp_audio.c)：蜂鳴器 LEDC PWM 快門聲與開機和弦音。
+  * [bsp_inputs.c](firmware/components/bsp_inputs/bsp_inputs.c)：五向獨立 GPIO 數位輸入與抗抖動檢測。
+  * [bsp_audio.c](firmware/components/bsp_audio/bsp_audio.c)：9018 貼片無源壓電蜂鳴器 LEDC PWM 直驅 (快門聲、開機和弦、方波音效)。
 
 ### 第三類：小白零基礎自製實戰手冊
 * 詳見：[BEGINNER_TUTORIAL_ZERO_TO_HERO.md](BEGINNER_TUTORIAL_ZERO_TO_HERO.md)
