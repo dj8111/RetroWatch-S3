@@ -41,12 +41,17 @@ c:\Dev\微型復古多功能掌機\
 ## 🎯 分門別類核心交付清單
 
 ### 第一類：3D 列印要提供給廠商的資料包
+* **直接發包壓縮包（開箱即用）**：[3d_models/RetroWatch-S3_3D_Print_Package.zip](3d_models/RetroWatch-S3_3D_Print_Package.zip)
+  * 已包含所有 3D 打印常用格式：**STL**（工業切片標準）、**3MF**（高精度色彩/單元安全格式）、**OBJ**（通用 3D 模型）、發包指南與面板貼紙 SVG。
 * **發包說明文件**：[3d_models/README_3D_PRINTING.md](3d_models/README_3D_PRINTING.md)
-  * 包含：發給 3D 列印廠商的「**一鍵複製溝通話術**」、材料選擇（工業級高韌性類 ABS 樹脂）、外觀顏色（半透明燻黑 Smoke Black）、0.05mm 層厚與內側打支撐要求。
-* **3D 幾何源碼**：[3d_models/generate_models.scad](3d_models/generate_models.scad)
-  * 前殼主體（帶銘板沉台、壓克力沉台、Type-C 側槽、卡榫槽）。
-  * 後蓋主體（帶 **高出 1.0mm 鏡頭火山口防護環**、左側平推插舌、70° 桌架凹槽、右側吊飾孔）。
-  * A24 酒紅色階梯鍵帽、膠囊功能鍵帽。
+  * 包含：發給 3D 列印廠商的「**一鍵複製溝通話術**」、材料選擇（PETG / SLA 類 ABS 樹脂）、外觀顏色（半透明燻黑 Smoke Black）、0.05mm~0.12mm 層厚與內側打支撐要求。
+* **各格式零件模型檔案（前殼、後蓋、街機圓球搖桿頭）**：
+  * **STL 格式（廠商通用首選）**：[front_case.stl](3d_models/front_case.stl)、[rear_case.stl](3d_models/rear_case.stl)、[joystick_ball_cap.stl](3d_models/joystick_ball_cap.stl)
+  * **3MF 格式（現代切片高精格式）**：[front_case.3mf](3d_models/front_case.3mf)、[rear_case.3mf](3d_models/rear_case.3mf)、[joystick_ball_cap.3mf](3d_models/joystick_ball_cap.3mf)
+  * **OBJ 格式（通用網格格式）**：[front_case.obj](3d_models/front_case.obj)、[rear_case.obj](3d_models/rear_case.obj)、[joystick_ball_cap.obj](3d_models/joystick_ball_cap.obj)
+* **3D 幾何源碼與一鍵匯出腳本**：
+  * [3d_models/generate_models.scad](3d_models/generate_models.scad)：OpenSCAD 參數化原始碼（可自定義視圖與尺寸）。
+  * [3d_models/export_all_models.bat](3d_models/export_all_models.bat) / [export_all_models.py](3d_models/export_all_models.py)：Windows 一鍵雙擊自動批次重新導出所有 STL/3MF/OBJ 並打包成 ZIP。
 * **面板印刷與裁切圖紙**：[3d_models/faceplate_sticker_104x56.svg](3d_models/faceplate_sticker_104x56.svg)
   * 1:1 實物比例（102 × 54 mm），具備拉絲香檳金、橘紅邊框飾線、文字印刷與按鍵開孔沖壓線。
 
