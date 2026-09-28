@@ -77,6 +77,7 @@ def export_all():
         "front_case.stl", "rear_case.stl", "joystick_ball_cap.stl",
         "front_case.3mf", "rear_case.3mf", "joystick_ball_cap.3mf",
         "front_case.obj", "rear_case.obj", "joystick_ball_cap.obj",
+        "faceplate_sticker_120x56.svg",
         "faceplate_sticker_104x56.svg",
         "README_3D_PRINTING.md"
     ]

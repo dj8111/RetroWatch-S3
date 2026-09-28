@@ -15,8 +15,9 @@ c:\Dev\微型復古多功能掌機\
 │
 ├── 📁 3d_models/                         # 【3D 列印與製造發包專用目錄】
 │   ├── README_3D_PRINTING.md             # 🌟 提供給 3D 列印廠商的規格書、材質要求與發包話術
-│   ├── generate_models.scad              # 🌟 OpenSCAD 參數化 3D 建模源代碼 (前殼/後蓋/按鍵帽)
-│   └── faceplate_sticker_104x56.svg      # 🌟 1:1 前面板香檳金金屬銘板 / 彩色背膠貼紙印刷圖紙
+│   ├── generate_models.scad              # 🌟 OpenSCAD 參數化 3D 建模源代碼 (前殼/後蓋/搖桿球頭，120x56mm 寬版)
+│   ├── faceplate_sticker_120x56.svg      # 🌟 1:1 前面板 Game Boy 復古灰面板背膠貼紙印刷圖紙 (118x54mm)
+│   └── faceplate_sticker_104x56.svg      # (相容備份圖紙)
 │
 └── 📁 firmware/                          # 【ESP32-S3 核心韌體工程 (ESP-IDF v5.1+)】
     ├── CMakeLists.txt                    # 根構建腳本
@@ -44,16 +45,16 @@ c:\Dev\微型復古多功能掌機\
 * **直接發包壓縮包（開箱即用）**：[3d_models/RetroWatch-S3_3D_Print_Package.zip](3d_models/RetroWatch-S3_3D_Print_Package.zip)
   * 已包含所有 3D 打印常用格式：**STL**（工業切片標準）、**3MF**（高精度色彩/單元安全格式）、**OBJ**（通用 3D 模型）、發包指南與面板貼紙 SVG。
 * **發包說明文件**：[3d_models/README_3D_PRINTING.md](3d_models/README_3D_PRINTING.md)
-  * 包含：發給 3D 列印廠商的「**一鍵複製溝通話術**」、材料選擇（PETG / SLA 類 ABS 樹脂）、外觀顏色（半透明燻黑 Smoke Black）、0.05mm~0.12mm 層厚與內側打支撐要求。
-* **各格式零件模型檔案（前殼、後蓋、街機圓球搖桿頭）**：
+  * 包含：發給 3D 列印廠商的「**一鍵複製溝通話術 (PETG / SLA 雙方案)**」、材料選擇（PETG 首選 / SLA 高韌類 ABS 樹脂）、外觀顏色（Game Boy 復古灰 / 黑色）、0.08mm~0.12mm 層厚與內側打支撐要求。
+* **各格式零件模型檔案（前殼、後蓋、街機圓球搖桿頭，120×56×12mm 寬屏版）**：
   * **STL 格式（廠商通用首選）**：[front_case.stl](3d_models/front_case.stl)、[rear_case.stl](3d_models/rear_case.stl)、[joystick_ball_cap.stl](3d_models/joystick_ball_cap.stl)
   * **3MF 格式（現代切片高精格式）**：[front_case.3mf](3d_models/front_case.3mf)、[rear_case.3mf](3d_models/rear_case.3mf)、[joystick_ball_cap.3mf](3d_models/joystick_ball_cap.3mf)
   * **OBJ 格式（通用網格格式）**：[front_case.obj](3d_models/front_case.obj)、[rear_case.obj](3d_models/rear_case.obj)、[joystick_ball_cap.obj](3d_models/joystick_ball_cap.obj)
 * **3D 幾何源碼與一鍵匯出腳本**：
   * [3d_models/generate_models.scad](3d_models/generate_models.scad)：OpenSCAD 參數化原始碼（可自定義視圖與尺寸）。
   * [3d_models/export_all_models.bat](3d_models/export_all_models.bat) / [export_all_models.py](3d_models/export_all_models.py)：Windows 一鍵雙擊自動批次重新導出所有 STL/3MF/OBJ 並打包成 ZIP。
-* **面板印刷與裁切圖紙**：[3d_models/faceplate_sticker_104x56.svg](3d_models/faceplate_sticker_104x56.svg)
-  * 1:1 實物比例（102 × 54 mm），具備拉絲香檳金、橘紅邊框飾線、文字印刷與按鍵開孔沖壓線。
+* **面板印刷與裁切圖紙**：[3d_models/faceplate_sticker_120x56.svg](3d_models/faceplate_sticker_120x56.svg)
+  * 1:1 實物比例（118 × 54 mm），經典 Game Boy 暖灰基底、灰藍螢幕護目鏡片、深藍/酒紅雙彩條、獨立 A/B 鍵、完全不遮擋的 BATTERY 電量燈與按鍵開孔沖壓線。
 
 ### 第二類：燒錄在 ESP32-S3 板子上的程式內容
 * **工程根目錄**：[firmware/](firmware/)

@@ -1,13 +1,13 @@
 // ==============================================================================
 // RetroWatch-S3 參數化 3D 建模源代碼 (OpenSCAD)
-// 專案：微型復古多功能掌機 (104.0 x 56.0 x 12.0 mm)
-// 包含：前殼 (Front Case)、後蓋 (Rear Case)、酒紅 A/B 鍵帽、膠囊微動鍵帽
+// 專案：微型復古多功能掌機 (120.0 x 56.0 x 12.0 mm 寬屏舒適版)
+// 包含：前殼 (Front Case)、後蓋 (Rear Case)、街機圓球搖桿套頭
 // ==============================================================================
 
 $fn = 60; // 圓弧圓滑度
 
 // --- 全域幾何參數 (mm) ---
-case_w = 104.0;
+case_w = 120.0; // 寬度優化擴增至 120mm，左右兩側各增加 8mm 充足握持與走線空間
 case_h = 56.0;
 case_thick = 12.0;
 front_thick = 6.5;
@@ -31,7 +31,7 @@ module rounded_box(w, h, d, r) {
 module front_case() {
     difference() {
         union() {
-            // 主外殼實體 (外形 104.0 x 56.0 x 6.5 mm)
+            // 主外殼實體 (外形 120.0 x 56.0 x 6.5 mm)
             rounded_box(case_w, case_h, front_thick, corner_r);
 
             // 全周結合止口 (子口凸緣，高出分模面 1.2mm，厚度 0.75mm，帶內外 0.15mm 列印公差)
@@ -47,44 +47,44 @@ module front_case() {
                 cylinder(d=4.8, h=front_thick - wall);
         }
 
-        // 內部挖空 (內艙，挖通至止口頂端)
+        // 內部挖空 (內艙，挖通至止口頂端，淨寬 117.0mm，電池與主板容納空間極為充裕)
         translate([wall, wall, wall])
             rounded_box(case_w - wall*2, case_h - wall*2, front_thick + 2.0, corner_r - 0.5);
 
-        // 正面銘板沉台凹槽 (102 x 54, 深 0.55mm)
-        translate([(case_w - 102)/2, (case_h - 54)/2, -0.1])
-            rounded_box(102.0, 54.0, 0.55 + 0.1, 2.0);
+        // 正面銘板沉台凹槽 (118 x 54, 深 0.55mm)
+        translate([(case_w - 118)/2, (case_h - 54)/2, -0.1])
+            rounded_box(118.0, 54.0, 0.55 + 0.1, 2.0);
 
-        // 2.4 吋螢幕視窗開孔 (50.0 x 37.5 mm, 中心 X=52.0, Y=27.0，適配標準 2.4" ST7789 藍板模組)
-        translate([52.0 - 50.0/2, 27.0 - 37.5/2, -1.0])
+        // 2.4 吋螢幕視窗開孔 (50.0 x 37.5 mm, 中心 X=60.0, Y=27.0，適配標準 2.4" ST7789 藍板模組)
+        translate([case_w/2 - 50.0/2, 27.0 - 37.5/2, -1.0])
             cube([50.0, 37.5, front_thick + 2.0]);
 
         // 螢幕壓克力沉台 (52.0 x 39.5, 深 1.0mm)
-        translate([52.0 - 52.0/2, 27.0 - 39.5/2, -0.1])
+        translate([case_w/2 - 52.0/2, 27.0 - 39.5/2, -0.1])
             cube([52.0, 39.5, 1.0 + 0.1]);
 
-        // 五向導航搖桿開孔 (直徑 8.5mm, 中心 X=14.0, Y=21.5)
-        translate([14.0, 21.5, -1.0])
+        // 五向導航搖桿開孔 (直徑 8.5mm, 中心 X=17.0, Y=22.0)
+        translate([17.0, 22.0, -1.0])
             cylinder(d=8.5, h=front_thick + 2.0);
 
-        // 左上方 POWER 滑動開關開孔 (8.4 x 3.6mm, 中心 X=14.0, Y=45.5)
-        translate([14.0 - 8.4/2, 45.5 - 3.6/2, -1.0])
+        // 左上方 POWER 滑動開關開孔 (8.4 x 3.6mm, 中心 X=17.0, Y=45.5)
+        translate([17.0 - 8.4/2, 45.5 - 3.6/2, -1.0])
             cube([8.4, 3.6, front_thick + 2.0]);
 
-        // A 鍵圓形開孔 (直徑 7.6mm, 中心 X=94.5, Y=24.5)
-        translate([94.5, 24.5, -1.0])
+        // A 鍵圓形開孔 (直徑 7.6mm, 中心 X=103.5, Y=26.0)
+        translate([103.5, 26.0, -1.0])
             cylinder(d=7.6, h=front_thick + 2.0);
 
-        // B 鍵圓形開孔 (直徑 7.6mm, 中心 X=85.0, Y=17.0)
-        translate([85.0, 17.0, -1.0])
+        // B 鍵圓形開孔 (直徑 7.6mm, 中心 X=93.0, Y=18.0)
+        translate([93.0, 18.0, -1.0])
             cylinder(d=7.6, h=front_thick + 2.0);
 
-        // PAUSE 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=83.0, Y=43.5)
-        translate([83.0 - 3.0, 43.5 - 1.4, -1.0])
+        // PAUSE 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=91.0, Y=43.5)
+        translate([91.0 - 3.0, 43.5 - 1.4, -1.0])
             cube([6.0, 2.8, front_thick + 2.0]);
 
-        // START 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=94.0, Y=43.5)
-        translate([94.0 - 3.0, 43.5 - 1.4, -1.0])
+        // START 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=103.0, Y=43.5)
+        translate([103.0 - 3.0, 43.5 - 1.4, -1.0])
             cube([6.0, 2.8, front_thick + 2.0]);
 
         // 左側 Type-C 沉板側槽 (9.2 x 3.4mm, 中心 X=0.0, Y=12.0)
@@ -93,7 +93,7 @@ module front_case() {
 
         // 蜂鳴器出音陣列小孔 (直徑 1.3mm x 4 顆)
         for (i = [0:3]) {
-            translate([10.5 + i*2.3, 6.8, -1.0])
+            translate([13.5 + i*2.3, 6.8, -1.0])
                 cylinder(d=1.3, h=front_thick + 2.0);
         }
 
@@ -117,7 +117,7 @@ module front_case() {
 module rear_case() {
     difference() {
         union() {
-            // 後蓋主體外框 (104.0 x 56.0 x 6.0 mm)
+            // 後蓋主體外框 (120.0 x 56.0 x 6.0 mm)
             rounded_box(case_w, case_h, rear_thick, corner_r);
 
             // 【對外突出相機火山口保護環 (External Raised Volcano Ring)】
