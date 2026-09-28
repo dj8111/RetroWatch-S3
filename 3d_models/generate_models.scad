@@ -108,7 +108,7 @@ module front_case() {
                 cube([wall + 2.0, 9.2, 2.0]);
         }
 
-        // --- 1.3 右側 M2 滾花銅螺母實心柱 (直徑 5.0mm，帶側壁加強肋，永不被挖空！) ---
+        // --- 1.3 右側 M2 螺絲導引實心柱 (直徑 5.0mm，帶側壁加強肋，永不被挖空！) ---
         difference() {
             union() {
                 translate([case_w - 6.0, 12.0, wall])
@@ -121,11 +121,11 @@ module front_case() {
                 translate([case_w - wall - 2.5, case_h - 7.5 - 1.2, wall])
                     cube([2.5, 2.4, front_thick - wall]);
             }
-            // M2 熱熔銅螺母底孔 (直徑 3.0mm, 深 4.5mm，由分模面向下沉入)
+            // M2 自攻螺絲導引底孔 (直徑 1.8mm, 深 4.5mm，由分模面向下沉入，M2 自攻螺絲直接鎖入塑料緊固，免烙鐵熱熔銅螺母！)
             translate([case_w - 6.0, 12.0, front_thick - 4.5])
-                cylinder(d=3.0, h=5.0);
+                cylinder(d=1.8, h=5.0);
             translate([case_w - 6.0, case_h - 7.5, front_thick - 4.5])
-                cylinder(d=3.0, h=5.0);
+                cylinder(d=1.8, h=5.0);
         }
     }
 }
