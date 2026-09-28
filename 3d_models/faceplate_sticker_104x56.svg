@@ -1,61 +1,166 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 54" width="102mm" height="54mm">
-  <!-- 定義拉絲香檳金漸層背景與遮罩 -->
+  <!-- 定義像素色盤與漸層 -->
   <defs>
-    <linearGradient id="champagneGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#EED9B3" />
-      <stop offset="35%" stop-color="#E5C795" />
-      <stop offset="50%" stop-color="#F3E5CA" />
-      <stop offset="70%" stop-color="#D8B57D" />
-      <stop offset="100%" stop-color="#C9A368" />
+    <!-- 背景深邃石墨黑微漸層 -->
+    <linearGradient id="pixelBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1E24" />
+      <stop offset="50%" stop-color="#16161A" />
+      <stop offset="100%" stop-color="#121215" />
     </linearGradient>
+
+    <!-- 經典像素小愛心 (8-Bit Pixel Heart, 7x6 點陣) -->
+    <g id="pixelHeart">
+      <rect x="0.4" y="0.0" width="0.8" height="0.4" fill="#FF3344" />
+      <rect x="1.6" y="0.0" width="0.8" height="0.4" fill="#FF3344" />
+      <rect x="0.0" y="0.4" width="2.8" height="0.8" fill="#FF3344" />
+      <!-- 高光像素 -->
+      <rect x="0.4" y="0.4" width="0.4" height="0.4" fill="#FFAAAA" />
+      <rect x="0.0" y="1.2" width="2.8" height="0.4" fill="#FF3344" />
+      <rect x="0.4" y="1.6" width="2.0" height="0.4" fill="#FF3344" />
+      <rect x="0.8" y="2.0" width="1.2" height="0.4" fill="#FF3344" />
+      <rect x="1.2" y="2.4" width="0.4" height="0.4" fill="#FF3344" />
+    </g>
+
+    <!-- 像素外星小怪獸 (8-Bit Space Invader Icon) -->
+    <g id="pixelInvader">
+      <rect x="0.8" y="0.0" width="0.4" height="0.4" fill="#FFCC00" />
+      <rect x="2.8" y="0.0" width="0.4" height="0.4" fill="#FFCC00" />
+      <rect x="1.2" y="0.4" width="0.4" height="0.4" fill="#FFCC00" />
+      <rect x="2.4" y="0.4" width="0.4" height="0.4" fill="#FFCC00" />
+      <rect x="0.8" y="0.8" width="2.4" height="0.4" fill="#FFCC00" />
+      <rect x="0.4" y="1.2" width="0.8" height="0.4" fill="#FFCC00" />
+      <rect x="1.6" y="1.2" width="0.8" height="0.4" fill="#FFCC00" />
+      <rect x="2.8" y="1.2" width="0.8" height="0.4" fill="#FFCC00" />
+      <rect x="0.0" y="1.6" width="4.0" height="0.4" fill="#FFCC00" />
+      <rect x="0.0" y="2.0" width="0.4" height="0.4" fill="#FFCC00" />
+      <rect x="1.2" y="2.0" width="1.6" height="0.4" fill="#FFCC00" />
+      <rect x="3.6" y="2.0" width="0.4" height="0.4" fill="#FFCC00" />
+      <rect x="0.4" y="2.4" width="0.4" height="0.4" fill="#FFCC00" />
+      <rect x="3.2" y="2.4" width="0.4" height="0.4" fill="#FFCC00" />
+    </g>
   </defs>
 
-  <!-- 1. 香檳金金屬銘板基底 (102 x 54 mm, R2 圓角) -->
-  <rect x="0" y="0" width="102" height="54" rx="2" ry="2" fill="url(#champagneGold)" stroke="#B89357" stroke-width="0.3" />
+  <!-- ============================================================================== -->
+  <!-- 1. 銘板基底 (102 x 54 mm, R2 圓角) -->
+  <!-- ============================================================================== -->
+  <rect x="0" y="0" width="102" height="54" rx="2" ry="2" fill="url(#pixelBg)" stroke="#33333E" stroke-width="0.3" />
 
-  <!-- 2. 經典橘紅雙飾線 (任天堂 Game & Watch 風格) -->
-  <rect x="2" y="2" width="98" height="50" rx="1.5" ry="1.5" fill="none" stroke="#E63920" stroke-width="0.6" />
-  <rect x="2.8" y="2.8" width="96.4" height="48.4" rx="1.2" ry="1.2" fill="none" stroke="#333333" stroke-width="0.3" />
+  <!-- 像素階梯外裝飾邊框 -->
+  <rect x="1.5" y="1.5" width="99.0" height="51.0" rx="1.2" ry="1.2" fill="none" stroke="#E53935" stroke-width="0.5" />
+  <rect x="2.3" y="2.3" width="97.4" height="49.4" rx="0.8" ry="0.8" fill="none" stroke="#FFCC00" stroke-width="0.3" stroke-dasharray="1.2,0.8" />
 
-  <!-- 3. 中央 2.4 吋螢幕開孔視窗 (50.0 x 37.5 mm, 中心位於原點 X=51.0, Y=27.0) -->
-  <!-- 黑色螢幕絲印邊框 -->
-  <rect x="24.0" y="6.5" width="54.0" height="41.0" rx="1" ry="1" fill="#1A1A1A" stroke="#E63920" stroke-width="0.5" />
-  <!-- 螢幕透明視窗實孔 (裁切線) -->
-  <rect x="26.0" y="8.25" width="50.0" height="37.5" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" stroke-dasharray="1,1" />
+  <!-- 四個角落像素方塊裝飾 -->
+  <rect x="3.0" y="3.0" width="1.2" height="1.2" fill="#E53935" />
+  <rect x="97.8" y="3.0" width="1.2" height="1.2" fill="#E53935" />
+  <rect x="3.0" y="49.8" width="1.2" height="1.2" fill="#E53935" />
+  <rect x="97.8" y="49.8" width="1.2" height="1.2" fill="#E53935" />
 
-  <!-- 4. 品牌標誌印刷：GAME & WATCH 復古粗體 -->
-  <text x="51.0" y="7.5" font-family="'Impact', 'Arial Black', sans-serif" font-size="3.6" font-weight="bold" fill="#222222" text-anchor="middle" letter-spacing="0.5">GAME &amp; WATCH</text>
-  <text x="51.0" y="47.5" font-family="'Courier New', monospace" font-size="2.2" font-weight="bold" fill="#E63920" text-anchor="middle" letter-spacing="0.8">RetroWatch-S3</text>
+  <!-- ============================================================================== -->
+  <!-- 2. 中央 2.4 吋螢幕視窗 (對準 front_case: 50.0 x 37.5 mm, 中心 X=51.0, Y=28.0) -->
+  <!-- ============================================================================== -->
+  <!-- 螢幕像素外框 -->
+  <rect x="24.5" y="7.75" width="53.0" height="40.5" rx="0.6" ry="0.6" fill="#0C0D10" stroke="#E53935" stroke-width="0.5" />
+  <rect x="25.2" y="8.45" width="51.6" height="39.1" rx="0.3" ry="0.3" fill="none" stroke="#444455" stroke-width="0.3" />
 
-  <!-- 5. 左側開孔裁切指示 (綠色虛線為沖壓裁切線) -->
-  <!-- 左上 POWER 開關開孔 (8.4 x 3.6mm, 中心 X=13.0, Y=44.5) -->
-  <rect x="8.8" y="7.7" width="8.4" height="3.6" rx="0.5" ry="0.5" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="13.0" y="6.2" font-family="sans-serif" font-size="1.8" fill="#333333" text-anchor="middle">POWER</text>
+  <!-- 螢幕透明視窗實孔 (雷射/沖壓裁切線) -->
+  <rect x="26.0" y="9.25" width="50.0" height="37.5" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" stroke-dasharray="1,1" />
 
-  <!-- 左側五向搖桿開孔 (直徑 8.5mm, 中心 X=13.0, Y=20.5) -->
-  <circle cx="13.0" cy="20.5" r="4.25" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <!-- 螢幕上方：像素生命值愛心 (3 顆 8-Bit Hearts) -->
+  <g transform="translate(44.5, 4.2)">
+    <use href="#pixelHeart" x="0" y="0" />
+    <use href="#pixelHeart" x="4.4" y="0" />
+    <use href="#pixelHeart" x="8.8" y="0" />
+  </g>
 
-  <!-- 蜂鳴器 4 個出音孔 (直徑 1.3mm) -->
-  <circle cx="9.5" cy="48.2" r="0.65" fill="#111111" />
-  <circle cx="11.8" cy="48.2" r="0.65" fill="#111111" />
-  <circle cx="14.1" cy="48.2" r="0.65" fill="#111111" />
-  <circle cx="16.4" cy="48.2" r="0.65" fill="#111111" />
+  <!-- 螢幕下方：經典像素外星小怪獸 + 裝飾像素點陣條 -->
+  <g transform="translate(49.0, 49.3)">
+    <use href="#pixelInvader" x="0" y="0" />
+  </g>
+  <!-- 裝飾像素小方塊點列 -->
+  <rect x="36.0" y="50.3" width="0.8" height="0.8" fill="#E53935" />
+  <rect x="38.0" y="50.3" width="0.8" height="0.8" fill="#FFCC00" />
+  <rect x="40.0" y="50.3" width="0.8" height="0.8" fill="#26C6DA" />
+  <rect x="42.0" y="50.3" width="0.8" height="0.8" fill="#E0E0E0" />
+  <rect x="59.0" y="50.3" width="0.8" height="0.8" fill="#E0E0E0" />
+  <rect x="61.0" y="50.3" width="0.8" height="0.8" fill="#26C6DA" />
+  <rect x="63.0" y="50.3" width="0.8" height="0.8" fill="#FFCC00" />
+  <rect x="65.0" y="50.3" width="0.8" height="0.8" fill="#E53935" />
 
-  <!-- 6. 右側按鍵開孔裁切指示 -->
-  <!-- PAUSE 鍵 (6.0 x 2.8mm, 中心 X=83.0, Y=42.5) -->
-  <rect x="80.0" y="41.1" width="6.0" height="2.8" rx="1.4" ry="1.4" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="83.0" y="39.5" font-family="sans-serif" font-size="1.8" font-weight="bold" fill="#333333" text-anchor="middle">PAUSE</text>
+  <!-- ============================================================================== -->
+  <!-- 3. 左側控制區開孔與像素標籤 -->
+  <!-- ============================================================================== -->
+  <!-- 左上 POWER 滑動開關開孔 (8.4 x 3.6mm, 中心 X=13.0, Y=9.5) -->
+  <rect x="8.8" y="7.7" width="8.4" height="3.6" rx="0.4" ry="0.4" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <text x="13.0" y="5.8" font-family="'Courier New', monospace" font-size="1.9" font-weight="bold" fill="#FFCC00" text-anchor="middle" letter-spacing="0.3">[ PWR ]</text>
 
-  <!-- START 鍵 (6.0 x 2.8mm, 中心 X=94.0, Y=42.5) -->
-  <rect x="91.0" y="41.1" width="6.0" height="2.8" rx="1.4" ry="1.4" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="94.0" y="39.5" font-family="sans-serif" font-size="1.8" font-weight="bold" fill="#333333" text-anchor="middle">START</text>
+  <!-- 左側五向搖桿開孔 (直徑 8.5mm, 中心 X=13.0, Y=33.5) -->
+  <circle cx="13.0" cy="33.5" r="4.25" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
 
-  <!-- B 鍵 (直徑 7.6mm, 中心 X=84.0, Y=16.0) -->
-  <circle cx="84.0" cy="16.0" r="3.8" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="84.0" y="24.0" font-family="sans-serif" font-size="3.0" font-weight="bold" fill="#B3241C" text-anchor="middle">B</text>
+  <!-- 五向鍵四向像素箭頭裝飾 (▲ ▼ ◄ ►) -->
+  <!-- 上 ▲ -->
+  <g transform="translate(11.8, 26.6)">
+    <rect x="0.8" y="0.0" width="0.8" height="0.4" fill="#26C6DA" />
+    <rect x="0.4" y="0.4" width="1.6" height="0.4" fill="#26C6DA" />
+    <rect x="0.0" y="0.8" width="2.4" height="0.4" fill="#26C6DA" />
+  </g>
+  <!-- 下 ▼ -->
+  <g transform="translate(11.8, 39.3)">
+    <rect x="0.0" y="0.0" width="2.4" height="0.4" fill="#26C6DA" />
+    <rect x="0.4" y="0.4" width="1.6" height="0.4" fill="#26C6DA" />
+    <rect x="0.8" y="0.8" width="0.8" height="0.4" fill="#26C6DA" />
+  </g>
+  <!-- 左 ◄ -->
+  <g transform="translate(6.1, 32.3)">
+    <rect x="0.8" y="0.0" width="0.4" height="2.4" fill="#26C6DA" />
+    <rect x="0.4" y="0.4" width="0.4" height="1.6" fill="#26C6DA" />
+    <rect x="0.0" y="0.8" width="0.4" height="0.8" fill="#26C6DA" />
+  </g>
+  <!-- 右 ► -->
+  <g transform="translate(18.7, 32.3)">
+    <rect x="0.0" y="0.0" width="0.4" height="2.4" fill="#26C6DA" />
+    <rect x="0.4" y="0.4" width="0.4" height="1.6" fill="#26C6DA" />
+    <rect x="0.8" y="0.8" width="0.4" height="0.8" fill="#26C6DA" />
+  </g>
 
-  <!-- A 鍵 / 快門 (直徑 7.6mm, 中心 X=93.5, Y=23.5) -->
-  <circle cx="93.5" cy="23.5" r="3.8" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="93.5" y="31.5" font-family="sans-serif" font-size="3.0" font-weight="bold" fill="#B3241C" text-anchor="middle">A</text>
-  <text x="93.5" y="17.5" font-family="sans-serif" font-size="1.6" fill="#666666" text-anchor="middle">SHUTTER</text>
+  <!-- 左下蜂鳴器 4 個出音孔 (直徑 1.3mm, 中心 Y=48.2) -->
+  <circle cx="9.5" cy="48.2" r="0.65" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <circle cx="11.8" cy="48.2" r="0.65" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <circle cx="14.1" cy="48.2" r="0.65" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <circle cx="16.4" cy="48.2" r="0.65" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <!-- 像素音符小圖示 -->
+  <g transform="translate(12.2, 44.5)">
+    <rect x="1.0" y="0.0" width="1.0" height="0.4" fill="#FFCC00" />
+    <rect x="1.6" y="0.4" width="0.4" height="1.6" fill="#FFCC00" />
+    <rect x="1.0" y="1.6" width="0.8" height="0.6" fill="#FFCC00" />
+  </g>
+
+  <!-- ============================================================================== -->
+  <!-- 4. 右側按鍵開孔與像素標籤 -->
+  <!-- ============================================================================== -->
+  <!-- PAUSE 鍵開孔 (6.0 x 2.8mm, 中心 X=83.0, Y=11.5) -->
+  <rect x="80.0" y="10.1" width="6.0" height="2.8" rx="0.5" ry="0.5" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <text x="83.0" y="8.2" font-family="'Courier New', monospace" font-size="1.8" font-weight="bold" fill="#E0E0E0" text-anchor="middle">[PAUSE]</text>
+
+  <!-- START 鍵開孔 (6.0 x 2.8mm, 中心 X=94.0, Y=11.5) -->
+  <rect x="91.0" y="10.1" width="6.0" height="2.8" rx="0.5" ry="0.5" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <text x="94.0" y="8.2" font-family="'Courier New', monospace" font-size="1.8" font-weight="bold" fill="#E0E0E0" text-anchor="middle">[START]</text>
+
+  <!-- B 鍵 (直徑 7.6mm, 中心 X=84.0, Y=38.0) -->
+  <!-- 裝飾像素外圈 -->
+  <circle cx="84.0" cy="38.0" r="4.9" fill="none" stroke="#333340" stroke-width="0.6" stroke-dasharray="0.8,0.8" />
+  <circle cx="84.0" cy="38.0" r="3.8" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <!-- 像素風格 B 標籤 (帶經典像素紅色底色框) -->
+  <rect x="82.4" y="43.2" width="3.2" height="3.2" rx="0.4" fill="#B3241C" />
+  <text x="84.0" y="45.7" font-family="'Courier New', monospace" font-size="2.4" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B</text>
+
+  <!-- A 鍵 (直徑 7.6mm, 中心 X=93.5, Y=30.5) -->
+  <!-- 裝飾像素外圈 -->
+  <circle cx="93.5" cy="30.5" r="4.9" fill="none" stroke="#333340" stroke-width="0.6" stroke-dasharray="0.8,0.8" />
+  <circle cx="93.5" cy="30.5" r="3.8" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
+  <!-- 像素風格 A 標籤 (帶經典像素紅色底色框) -->
+  <rect x="91.9" y="35.7" width="3.2" height="3.2" rx="0.4" fill="#B3241C" />
+  <text x="93.5" y="38.2" font-family="'Courier New', monospace" font-size="2.4" font-weight="bold" fill="#FFFFFF" text-anchor="middle">A</text>
+
+  <!-- A/B 按鍵斜向像素連接飾線 -->
+  <line x1="87.0" y1="35.2" x2="90.5" y2="33.0" stroke="#E53935" stroke-width="0.4" stroke-dasharray="0.6,0.6" />
 </svg>
