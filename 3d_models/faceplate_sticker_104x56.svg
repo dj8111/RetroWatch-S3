@@ -1,99 +1,104 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 54" width="102mm" height="54mm">
-  <!-- 定義拉絲香檳金漸層背景與精緻金屬質感 -->
+  <!-- 定義復古 Game Boy (DMG-01) 經典灰階與銘板質感 -->
   <defs>
-    <linearGradient id="champagneGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#EED9B3" />
-      <stop offset="35%" stop-color="#E5C795" />
-      <stop offset="50%" stop-color="#F3E5CA" />
-      <stop offset="70%" stop-color="#D8B57D" />
-      <stop offset="100%" stop-color="#C9A368" />
+    <!-- 經典 Game Boy 暖灰基底漸層 -->
+    <linearGradient id="gbBodyGrey" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DCDAD3" />
+      <stop offset="40%" stop-color="#D2D0C8" />
+      <stop offset="80%" stop-color="#C7C4BC" />
+      <stop offset="100%" stop-color="#BCB9B1" />
     </linearGradient>
 
-    <!-- 螢幕邊框金屬深色漸層 -->
-    <linearGradient id="screenBezel" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#24242A" />
-      <stop offset="50%" stop-color="#18181C" />
-      <stop offset="100%" stop-color="#101014" />
+    <!-- 經典 Game Boy 灰藍色螢幕護目鏡片 (Screen Bezel) -->
+    <linearGradient id="gbScreenBezel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5E6573" />
+      <stop offset="40%" stop-color="#4E5462" />
+      <stop offset="100%" stop-color="#3D424E" />
     </linearGradient>
   </defs>
 
   <!-- ============================================================================== -->
-  <!-- 1. 香檳金金屬銘板基底 (102 x 54 mm, R2 圓角) -->
+  <!-- 1. 復古 Game Boy 經典灰基底 (102 x 54 mm, R2 圓角) -->
   <!-- ============================================================================== -->
-  <rect x="0" y="0" width="102" height="54" rx="2" ry="2" fill="url(#champagneGold)" stroke="#B89357" stroke-width="0.3" />
+  <rect x="0" y="0" width="102" height="54" rx="2" ry="2" fill="url(#gbBodyGrey)" stroke="#AFAEA6" stroke-width="0.3" />
 
-  <!-- 經典復古雙飾線 (經典酒紅 + 深灰細線) -->
-  <rect x="2.0" y="2.0" width="98.0" height="50.0" rx="1.5" ry="1.5" fill="none" stroke="#E63920" stroke-width="0.6" />
-  <rect x="2.8" y="2.8" width="96.4" height="48.4" rx="1.2" ry="1.2" fill="none" stroke="#333333" stroke-width="0.3" />
+  <!-- 外圍精細凹槽飾線 (經典模具線質感) -->
+  <rect x="1.6" y="1.6" width="98.8" height="50.8" rx="1.5" ry="1.5" fill="none" stroke="#BAB8AF" stroke-width="0.4" />
+  <rect x="2.4" y="2.4" width="97.2" height="49.2" rx="1.1" ry="1.1" fill="none" stroke="#FFFFFF" stroke-width="0.25" opacity="0.6" />
 
   <!-- ============================================================================== -->
-  <!-- 2. 中央 2.4 吋螢幕視窗 (對準 front_case: 50.0 x 37.5 mm, 中心 X=51.0, Y=28.0) -->
+  <!-- 2. 中央 2.4 吋螢幕視窗 (Game Boy 灰藍鏡片造型，中心 X=51.0, Y=28.0) -->
   <!-- ============================================================================== -->
-  <!-- 經典黑色螢幕絲印邊框 -->
-  <rect x="24.0" y="6.5" width="54.0" height="42.0" rx="1.2" ry="1.2" fill="url(#screenBezel)" stroke="#E63920" stroke-width="0.5" />
-  <rect x="24.8" y="7.3" width="52.4" height="40.4" rx="0.8" ry="0.8" fill="none" stroke="#444444" stroke-width="0.3" />
+  <!-- 經典灰藍色螢幕護目外框 (帶左上切角與立體微陰影) -->
+  <rect x="23.4" y="5.8" width="55.2" height="43.4" rx="1.8" ry="1.8" fill="url(#gbScreenBezel)" stroke="#31353E" stroke-width="0.4" />
+  <rect x="24.2" y="6.6" width="53.6" height="41.8" rx="1.2" ry="1.2" fill="none" stroke="#717988" stroke-width="0.25" opacity="0.7" />
 
-  <!-- 螢幕透明視窗實孔 (綠色虛線為雷射/沖壓裁切線) -->
+  <!-- Game Boy 經典雙彩飾線 (深海藍 + 復古酒紅飾條) -->
+  <line x1="25.5" y1="8.0" x2="76.5" y2="8.0" stroke="#1A2C5B" stroke-width="0.5" />
+  <line x1="25.5" y1="8.7" x2="76.5" y2="8.7" stroke="#8B1D43" stroke-width="0.4" />
+
+  <!-- 螢幕透明視窗實孔 (綠色虛線為沖壓/雷射裁切線，50.0 x 37.5 mm) -->
   <rect x="26.0" y="9.25" width="50.0" height="37.5" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" stroke-dasharray="1,1" />
 
-  <!-- 螢幕上下裝飾線條 (簡約復古金屬雙軌飾條，無任何品牌商標與專案字樣) -->
-  <g transform="translate(51.0, 4.8)">
-    <line x1="-12" y1="0" x2="12" y2="0" stroke="#B89357" stroke-width="0.5" />
-    <line x1="-8" y1="1.0" x2="8" y2="1.0" stroke="#E63920" stroke-width="0.3" />
-  </g>
-  <g transform="translate(51.0, 50.2)">
-    <line x1="-14" y1="0" x2="14" y2="0" stroke="#B89357" stroke-width="0.5" />
-    <circle cx="-16" cy="0" r="0.4" fill="#B89357" />
-    <circle cx="16" cy="0" r="0.4" fill="#B89357" />
-  </g>
+  <!-- Game Boy 經典 BATTERY 指示燈模擬印刷 (位於螢幕鏡片左側) -->
+  <circle cx="24.8" cy="24.0" r="0.65" fill="#D32F2F" />
+  <circle cx="24.8" cy="24.0" r="0.25" fill="#FFAAAA" />
+  <text x="24.8" y="27.0" font-family="system-ui, -apple-system, sans-serif" font-size="0.9" font-weight="bold" fill="#B8BDC7" text-anchor="middle" letter-spacing="0.1">BATTERY</text>
+
+  <!-- 螢幕下方經典酒紅底雙裝飾細線 -->
+  <line x1="38.0" y1="48.0" x2="64.0" y2="48.0" stroke="#8B1D43" stroke-width="0.35" />
+  <line x1="42.0" y1="48.6" x2="60.0" y2="48.6" stroke="#1A2C5B" stroke-width="0.25" />
 
   <!-- ============================================================================== -->
-  <!-- 3. 左側控制區開孔與經典標籤 -->
+  <!-- 3. 左側控制區開孔與經典 Game Boy 標籤 -->
   <!-- ============================================================================== -->
   <!-- 左上 POWER 滑動開關開孔 (8.4 x 3.6mm, 中心 X=13.0, Y=9.5) -->
   <rect x="8.8" y="7.7" width="8.4" height="3.6" rx="0.5" ry="0.5" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="13.0" y="6.2" font-family="system-ui, -apple-system, sans-serif" font-size="1.8" font-weight="bold" fill="#333333" text-anchor="middle">POWER</text>
-  <text x="13.0" y="13.0" font-family="system-ui, -apple-system, sans-serif" font-size="1.2" fill="#777777" text-anchor="middle">OFF ◀ ▶ ON</text>
+  <!-- Game Boy 經典 POWER 印刷字樣與箭頭 -->
+  <text x="13.0" y="6.1" font-family="system-ui, -apple-system, sans-serif" font-size="1.7" font-weight="bold" fill="#1A2C5B" text-anchor="middle" letter-spacing="0.2">◀ POWER ▶</text>
+  <text x="13.0" y="12.9" font-family="system-ui, -apple-system, sans-serif" font-size="1.2" font-weight="600" fill="#666666" text-anchor="middle">OFF · ON</text>
 
   <!-- 左側五向搖桿開孔 (直徑 8.5mm, 中心 X=13.0, Y=33.5) -->
-  <!-- 經典圓形刻度飾圈 -->
-  <circle cx="13.0" cy="33.5" r="5.6" fill="none" stroke="#D8B57D" stroke-width="0.4" stroke-dasharray="1.2,0.8" />
+  <!-- 經典十字鍵圓盤凹槽飾圈 -->
+  <circle cx="13.0" cy="33.5" r="5.7" fill="#C2C0B8" stroke="#B0AEA6" stroke-width="0.35" />
   <circle cx="13.0" cy="33.5" r="4.25" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
 
-  <!-- 四向俐落箭頭指示 (▲ ▼ ◀ ▶) -->
-  <polygon points="13.0,26.5 11.6,28.2 14.4,28.2" fill="#555555" />
-  <polygon points="13.0,40.5 11.6,38.8 14.4,38.8" fill="#555555" />
-  <polygon points="6.0,33.5 7.7,32.1 7.7,34.9" fill="#555555" />
-  <polygon points="20.0,33.5 18.3,32.1 18.3,34.9" fill="#555555" />
+  <!-- 四向方向三角指示 (▲ ▼ ◀ ▶) -->
+  <polygon points="13.0,26.4 11.5,28.2 14.5,28.2" fill="#2B2B2B" />
+  <polygon points="13.0,40.6 11.5,38.8 14.5,38.8" fill="#2B2B2B" />
+  <polygon points="5.9,33.5 7.7,32.0 7.7,35.0" fill="#2B2B2B" />
+  <polygon points="20.1,33.5 18.3,32.0 18.3,35.0" fill="#2B2B2B" />
 
   <!-- 左下蜂鳴器 4 個出音孔 (直徑 1.3mm, 中心 Y=48.2) -->
   <circle cx="9.5" cy="48.2" r="0.65" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
   <circle cx="11.8" cy="48.2" r="0.65" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
   <circle cx="14.1" cy="48.2" r="0.65" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
   <circle cx="16.4" cy="48.2" r="0.65" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="13.0" y="45.5" font-family="system-ui, -apple-system, sans-serif" font-size="1.4" font-weight="bold" fill="#666666" text-anchor="middle">SOUND</text>
+  <!-- 經典斜向聲孔裝飾條 (Game Boy 經典揚聲器格柵風) -->
+  <line x1="8.5" y1="45.6" x2="17.4" y2="45.6" stroke="#9E9C94" stroke-width="0.3" stroke-dasharray="1.2,0.8" />
 
   <!-- ============================================================================== -->
-  <!-- 4. 右側按鍵開孔與經典標籤 -->
+  <!-- 4. 右側按鍵開孔與經典 Game Boy 標籤 (無連接線) -->
   <!-- ============================================================================== -->
   <!-- PAUSE 鍵開孔 (6.0 x 2.8mm, 中心 X=82.0, Y=11.5) -->
   <rect x="79.0" y="10.1" width="6.0" height="2.8" rx="1.4" ry="1.4" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="82.0" y="8.5" font-family="system-ui, -apple-system, sans-serif" font-size="1.7" font-weight="bold" fill="#333333" text-anchor="middle">PAUSE</text>
+  <text x="82.0" y="8.5" font-family="system-ui, -apple-system, sans-serif" font-size="1.6" font-weight="bold" fill="#1A2C5B" text-anchor="middle" letter-spacing="0.2">PAUSE</text>
 
   <!-- START 鍵開孔 (6.0 x 2.8mm, 中心 X=93.0, Y=11.5) -->
   <rect x="90.0" y="10.1" width="6.0" height="2.8" rx="1.4" ry="1.4" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="93.0" y="8.5" font-family="system-ui, -apple-system, sans-serif" font-size="1.7" font-weight="bold" fill="#333333" text-anchor="middle">START</text>
+  <text x="93.0" y="8.5" font-family="system-ui, -apple-system, sans-serif" font-size="1.6" font-weight="bold" fill="#1A2C5B" text-anchor="middle" letter-spacing="0.2">START</text>
 
   <!-- B 鍵 (直徑 7.6mm, 中心 X=84.0, Y=38.0) -->
-  <circle cx="84.0" cy="38.0" r="5.0" fill="none" stroke="#D8B57D" stroke-width="0.4" />
+  <!-- Game Boy 經典按鍵沉槽橢圓底襯 (獨立單獨，無連接線！) -->
+  <circle cx="84.0" cy="38.0" r="5.2" fill="#C2C0B8" stroke="#B0AEA6" stroke-width="0.35" />
   <circle cx="84.0" cy="38.0" r="3.8" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="84.0" y="46.8" font-family="system-ui, -apple-system, sans-serif" font-size="3.2" font-weight="bold" fill="#B3241C" text-anchor="middle">B</text>
+  <!-- 經典 Game Boy 傾斜酒紅深字標籤 -->
+  <text x="84.0" y="47.2" font-family="system-ui, -apple-system, sans-serif" font-size="3.2" font-weight="bold" font-style="italic" fill="#8B1D43" text-anchor="middle">B</text>
 
   <!-- A 鍵 (直徑 7.6mm, 中心 X=93.5, Y=30.5) -->
-  <circle cx="93.5" cy="30.5" r="5.0" fill="none" stroke="#D8B57D" stroke-width="0.4" />
+  <!-- Game Boy 經典按鍵沉槽橢圓底襯 (獨立單獨，無連接線！) -->
+  <circle cx="93.5" cy="30.5" r="5.2" fill="#C2C0B8" stroke="#B0AEA6" stroke-width="0.35" />
   <circle cx="93.5" cy="30.5" r="3.8" fill="#FFFFFF" stroke="#00FF00" stroke-width="0.2" />
-  <text x="93.5" y="39.3" font-family="system-ui, -apple-system, sans-serif" font-size="3.2" font-weight="bold" fill="#B3241C" text-anchor="middle">A</text>
-
-  <!-- A / B 按鍵經典紅色連接斜飾線 -->
-  <line x1="86.5" y1="35.5" x2="91.0" y2="33.0" stroke="#E63920" stroke-width="0.5" />
+  <!-- 經典 Game Boy 傾斜酒紅深字標籤 -->
+  <text x="93.5" y="39.7" font-family="system-ui, -apple-system, sans-serif" font-size="3.2" font-weight="bold" font-style="italic" fill="#8B1D43" text-anchor="middle">A</text>
 </svg>
