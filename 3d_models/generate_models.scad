@@ -40,9 +40,10 @@ module front_case() {
                 rounded_box(case_w - 2*(wall - 0.75), case_h - 2*(wall - 0.75), 1.2 + 0.1, corner_r - 0.5);
 
             // 右側 M2 滾花銅螺母柱 (2 處，外徑 4.8mm，內徑 3.0mm，熱熔固定 M2x3.0 螺母)
+            // 下柱 Y=12.0；上柱優化至 Y=case_h-7.5 (48.5mm)，完美避開 START 按鍵開孔與走線
             translate([case_w - 6.0, 12.0, wall])
                 cylinder(d=4.8, h=front_thick - wall);
-            translate([case_w - 6.0, case_h - 12.0, wall])
+            translate([case_w - 6.0, case_h - 7.5, wall])
                 cylinder(d=4.8, h=front_thick - wall);
         }
 
@@ -78,12 +79,12 @@ module front_case() {
         translate([85.0, 17.0, -1.0])
             cylinder(d=7.6, h=front_thick + 2.0);
 
-        // PAUSE 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=84.0, Y=43.5)
-        translate([84.0 - 3.0, 43.5 - 1.4, -1.0])
+        // PAUSE 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=83.0, Y=43.5)
+        translate([83.0 - 3.0, 43.5 - 1.4, -1.0])
             cube([6.0, 2.8, front_thick + 2.0]);
 
-        // START 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=95.0, Y=43.5)
-        translate([95.0 - 3.0, 43.5 - 1.4, -1.0])
+        // START 鍵膠囊槽 (6.0 x 2.8mm, 中心 X=94.0, Y=43.5)
+        translate([94.0 - 3.0, 43.5 - 1.4, -1.0])
             cube([6.0, 2.8, front_thick + 2.0]);
 
         // 左側 Type-C 沉板側槽 (9.2 x 3.4mm, 中心 X=0.0, Y=12.0)
@@ -105,7 +106,7 @@ module front_case() {
         // 右側熱熔螺母底孔 (直徑 3.0mm, 深 4.5mm)
         translate([case_w - 6.0, 12.0, front_thick - 4.5])
             cylinder(d=3.0, h=5.0);
-        translate([case_w - 6.0, case_h - 12.0, front_thick - 4.5])
+        translate([case_w - 6.0, case_h - 7.5, front_thick - 4.5])
             cylinder(d=3.0, h=5.0);
     }
 }
@@ -154,7 +155,7 @@ module rear_case() {
             // 右側螺絲導向柱 (與前殼螺母柱對位配合，內徑 2.3mm)
             translate([case_w - 6.0, 12.0, wall])
                 cylinder(d=4.6, h=rear_thick - wall);
-            translate([case_w - 6.0, case_h - 12.0, wall])
+            translate([case_w - 6.0, case_h - 7.5, wall])
                 cylinder(d=4.6, h=rear_thick - wall);
         }
 
@@ -207,7 +208,7 @@ module rear_case() {
             cylinder(d=4.2, h=1.6);
             cylinder(d=2.3, h=rear_thick + 2.0);
         }
-        translate([case_w - 6.0, case_h - 12.0, -0.2]) {
+        translate([case_w - 6.0, case_h - 7.5, -0.2]) {
             cylinder(d=4.2, h=1.6);
             cylinder(d=2.3, h=rear_thick + 2.0);
         }
