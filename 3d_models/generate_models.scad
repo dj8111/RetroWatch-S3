@@ -157,18 +157,94 @@ module rear_case() {
 // 3. 按鍵帽組 (Button Caps)
 // ==============================================================================
 module button_cap_a24() {
-    // A24 階梯型酒紅圓形鍵帽 (外徑 7.2mm)
+    // A24 階梯型酒紅圓形鍵帽 (外徑 7.2mm，適配 6x6 輕觸開關)
     difference() {
         union() {
             cylinder(d=7.2, h=4.0); // 鍵帽上部主體
-            cylinder(d=8.2, h=1.0); // 底盤止位階梯環
+            cylinder(d=8.2, h=1.0); // 底盤止位階梯環 (防止脫落)
         }
         // 內孔十字/圓柱柄 (適配 6x6 輕觸微動)
         translate([0, 0, -0.1]) cylinder(d=3.4, h=2.8);
     }
 }
 
-// --- 預覽控制 (解除註解對應行以匯出 STL) ---
-// front_case();
-// translate([0, 0, 15]) rear_case();
-// translate([115, 20, 0]) button_cap_a24();
+module button_cap_capsule() {
+    // START / PAUSE 扁平微動膠囊鍵帽 (5.6 x 2.4 x 3.0 mm)
+    hull() {
+        translate([-1.6, 0, 0]) cylinder(d=2.4, h=3.0);
+        translate([1.6, 0, 0]) cylinder(d=2.4, h=3.0);
+    }
+}
+
+// ==============================================================================
+// 4. OpenSCAD 視圖與零件匯出選擇 (開啟檔案時預設直接顯示！)
+// ==============================================================================
+/* [視圖模式選擇 / View Mode] */
+// 預設為平鋪展示所有零件，可於右側 Customizer 切換單獨匯出 STL
+view_mode = "side_by_side"; // [side_by_side:平鋪展示 (全部零件一覽), exploded:立體爆炸裝配圖, front_only:僅前殼 (Front Case), rear_only:僅後蓋 (Rear Case), buttons_only:僅按鍵帽 (Button Caps)]
+
+// --- 視圖呈現邏輯 ---
+if (view_mode == "side_by_side") {
+    // 1. 平鋪展示模式：前殼在左、後蓋在右、按鍵帽在右上方整齊排列
+    color([0.22, 0.22, 0.25, 0.9]) 
+        front_case();
+    
+    color([0.28, 0.28, 0.32, 0.9]) 
+        translate([case_w + 15, 0, 0]) 
+            rear_case();
+    
+    // A / B 圓形酒紅鍵帽 (2 顆)
+    color([0.78, 0.14, 0.16, 1.0]) 
+        translate([case_w + 25, case_h + 10, 0]) 
+            button_cap_a24();
+    color([0.78, 0.14, 0.16, 1.0]) 
+        translate([case_w + 40, case_h + 10, 0]) 
+            button_cap_a24();
+    
+    // START / PAUSE 膠囊微動鍵帽 (2 顆)
+    color([0.3, 0.3, 0.3, 1.0]) 
+        translate([case_w + 58, case_h + 10, 0]) 
+            button_cap_capsule();
+    color([0.3, 0.3, 0.3, 1.0]) 
+        translate([case_w + 72, case_h + 10, 0]) 
+            button_cap_capsule();
+
+} else if (view_mode == "exploded") {
+    // 2. 立體爆炸裝配展示：前殼在下、按鍵浮空對位、後蓋在上
+    color([0.22, 0.22, 0.25, 0.85]) 
+        front_case();
+    
+    // 按鍵帽浮空對應孔位
+    color([0.78, 0.14, 0.16, 1.0]) 
+        translate([94.5, 24.5, 4.0]) 
+            button_cap_a24(); // A 鍵
+    color([0.78, 0.14, 0.16, 1.0]) 
+        translate([85.0, 17.0, 4.0]) 
+            button_cap_a24(); // B 鍵
+    color([0.3, 0.3, 0.3, 1.0]) 
+        translate([84.0, 43.5, 4.0]) 
+            button_cap_capsule(); // PAUSE 鍵
+    color([0.3, 0.3, 0.3, 1.0]) 
+        translate([95.0, 43.5, 4.0]) 
+            button_cap_capsule(); // START 鍵
+    
+    // 後蓋翻轉浮空展示
+    color([0.28, 0.28, 0.32, 0.85]) 
+        translate([0, 0, 25.0]) 
+            rear_case();
+
+} else if (view_mode == "front_only") {
+    // 3. 單獨前殼 (按 F6 渲染後可直接匯出 front_case.stl)
+    front_case();
+
+} else if (view_mode == "rear_only") {
+    // 4. 單獨後蓋 (按 F6 渲染後可直接匯出 rear_case.stl)
+    rear_case();
+
+} else if (view_mode == "buttons_only") {
+    // 5. 單獨按鍵帽 (按 F6 渲染後可直接匯出 button_caps.stl)
+    translate([0, 0, 0]) button_cap_a24();
+    translate([15, 0, 0]) button_cap_a24();
+    translate([30, 0, 0]) button_cap_capsule();
+    translate([45, 0, 0]) button_cap_capsule();
+}
