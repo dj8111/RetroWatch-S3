@@ -277,27 +277,45 @@ module joystick_ball_cap() {
 }
 
 // ==============================================================================
-// 4. OpenSCAD 視圖與零件匯出選擇 (可於右側 Customizer 即時切換！)
+// 4. OpenSCAD 視圖與零件匯出選擇 (預設為【3 件獨立列印件平鋪展示】！)
 // ==============================================================================
 /* [視圖模式選擇 / View Mode] */
-view_mode = "assembled"; // [assembled:完整扣合組裝機體, exploded:立體爆炸裝配圖, side_by_side:平鋪展示 (列印預覽), front_only:僅前殼, rear_only:僅後蓋, joystick_cap_only:僅街機搖桿頭]
+// 預設為平鋪展示所有 3 個需列印的獨立零件，可於右側 Customizer 即時切換！
+view_mode = "side_by_side"; // [side_by_side:【預設】3個獨立列印件平鋪 (前殼+後蓋+搖桿頭), assembled:整機組裝扣合展示, exploded:立體爆炸裝配圖, front_only:僅前殼 (Front Case), rear_only:僅後蓋 (Rear Case), joystick_cap_only:僅街機搖桿頭 (Cap)]
 
 // --- 視圖呈現邏輯 ---
-if (view_mode == "assembled") {
-    // 1. 完整真實扣合裝配展示：前殼在下、後蓋在上密合咬合，所有卡榫與螺絲完美配合！
-    color([0.80, 0.79, 0.76, 1.0]) // 復古灰 Game Boy 主色
+if (view_mode == "side_by_side") {
+    // 1. 【預設首選】3 個獨立列印零件平鋪展示 (3 Distinct Printable Parts)
+    // --------------------------------------------------------------------------
+    // 【件 1】：前殼主體 (Front Case) - 正面朝下貼床，內艙朝上
+    color([0.80, 0.79, 0.76, 1.0]) 
+        front_case();
+    
+    // 【件 2】：後蓋主體 (Rear Case) - 獨立平放於右側，背板朝下貼床，內艙朝上，兩大件清晰間隔 20mm！
+    color([0.76, 0.75, 0.72, 1.0]) 
+        translate([case_w * 2 + 20, 0, front_thick + rear_thick + 1.2]) 
+            rotate([0, 180, 0]) 
+                rear_case();
+    
+    // 【件 3】：街機圓球搖桿套頭 (Joystick Ball Cap) - 獨立平放於上方熱床
+    color([0.85, 0.1, 0.1, 1.0]) 
+        translate([case_w + 10, case_h + 12, 0]) 
+            joystick_ball_cap();
+
+} else if (view_mode == "assembled") {
+    // 2. 整機真實扣合裝配展示：前後外殼咬合對位，卡榫與螺母柱緊密咬合！
+    color([0.80, 0.79, 0.76, 1.0]) 
         front_case();
     
     color([0.76, 0.75, 0.72, 0.95]) 
         rear_case();
     
-    // 街機圓球搖桿頭 (熱血亮紅)
     color([0.85, 0.1, 0.1, 1.0]) 
         translate([17.0, 22.0, front_thick - 1.2]) 
             joystick_ball_cap();
 
 } else if (view_mode == "exploded") {
-    // 2. 立體爆炸裝配圖：純 Z 軸平行拉開，卡爪垂直對準母槽、螺絲通孔垂直對準螺母柱！
+    // 3. 立體爆炸裝配圖：純 Z 軸平行拉開，所有卡爪與螺柱對位一目了然！
     color([0.80, 0.79, 0.76, 0.85]) 
         front_case();
     
@@ -309,30 +327,15 @@ if (view_mode == "assembled") {
         translate([0, 0, 25.0]) 
             rear_case();
 
-} else if (view_mode == "side_by_side") {
-    // 3. 3D 列印平鋪展示：前後外殼皆正面朝下平放於熱床 (Z=0)，無需支撐即可高質列印！
-    color([0.80, 0.79, 0.76, 1.0]) 
-        front_case();
-    
-    // 後蓋翻轉 180 度平放熱床 (背板貼床，開口朝上)
-    color([0.76, 0.75, 0.72, 1.0]) 
-        translate([case_w + 15, case_h, front_thick + rear_thick]) 
-            rotate([180, 0, 0]) 
-                rear_case();
-    
-    color([0.85, 0.1, 0.1, 1.0]) 
-        translate([case_w + 25, case_h + 10, 0]) 
-            joystick_ball_cap();
-
 } else if (view_mode == "front_only") {
     // 4. 單獨前殼 (STL 匯出專用)
     front_case();
 
 } else if (view_mode == "rear_only") {
-    // 5. 單獨後蓋 (採用與前殼完全一致的真機組裝座標系，載入即完美對位合體，零公差誤差！)
+    // 5. 單獨後蓋 (STL 匯出專用，採統一組裝座標系，載入即完美對齊合體)
     rear_case();
 
 } else if (view_mode == "joystick_cap_only") {
-    // 6. 單獨街機圓球搖桿套頭
+    // 6. 單獨街機圓球搖桿套頭 (STL 匯出專用)
     joystick_ball_cap();
 }
