@@ -154,7 +154,7 @@ module rear_case() {
 }
 
 // ==============================================================================
-// 3. 按鍵帽組 (Button Caps)
+// 3. 按鍵帽組與街機圓球搖桿套頭 (Button & Joystick Caps)
 // ==============================================================================
 module button_cap_a24() {
     // A24 階梯型酒紅圓形鍵帽 (外徑 7.2mm，適配 6x6 輕觸開關)
@@ -176,16 +176,38 @@ module button_cap_capsule() {
     }
 }
 
+module joystick_ball_cap() {
+    // 經典街機電玩台圓形球狀搖桿套頭 (Arcade Ball-Top Joystick Cap)
+    // 頂部為直徑 8.2mm 的微型街機圓球，提供絕佳大拇指撥動與微操手感！
+    difference() {
+        union() {
+            // 1. 頂部經典街機圓球 (Ball-Top)
+            translate([0, 0, 6.5])
+                sphere(d=8.2);
+            
+            // 2. 圓柱頸身 (連接球體與底座)
+            cylinder(d1=4.8, d2=4.0, h=5.5);
+            
+            // 3. 底部防脫位圓盤階梯 (外徑 8.6mm, 厚度 0.8mm)
+            cylinder(d=8.6, h=0.8);
+        }
+        
+        // 內部方孔插槽：緊密適配五向開關方柄 (2.1 x 2.1 mm, 深 3.8mm)
+        translate([-1.05, -1.05, -0.1])
+            cube([2.1, 2.1, 3.9]);
+    }
+}
+
 // ==============================================================================
 // 4. OpenSCAD 視圖與零件匯出選擇 (開啟檔案時預設直接顯示！)
 // ==============================================================================
 /* [視圖模式選擇 / View Mode] */
 // 預設為平鋪展示所有零件，可於右側 Customizer 切換單獨匯出 STL
-view_mode = "side_by_side"; // [side_by_side:平鋪展示 (全部零件一覽), exploded:立體爆炸裝配圖, front_only:僅前殼 (Front Case), rear_only:僅後蓋 (Rear Case), buttons_only:僅按鍵帽 (Button Caps)]
+view_mode = "side_by_side"; // [side_by_side:平鋪展示 (全部零件一覽), exploded:立體爆炸裝配圖, front_only:僅前殼 (Front Case), rear_only:僅後蓋 (Rear Case), joystick_cap_only:僅街機圓球搖桿套頭, buttons_only:僅按鍵帽 (Button Caps)]
 
 // --- 視圖呈現邏輯 ---
 if (view_mode == "side_by_side") {
-    // 1. 平鋪展示模式：前殼在左、後蓋在右、按鍵帽在右上方整齊排列
+    // 1. 平鋪展示模式：前殼在左、後蓋在右、按鍵帽與街機搖桿在右上方整齊排列
     color([0.22, 0.22, 0.25, 0.9]) 
         front_case();
     
@@ -193,26 +215,36 @@ if (view_mode == "side_by_side") {
         translate([case_w + 15, 0, 0]) 
             rear_case();
     
+    // 街機經典圓球搖桿頭 (熱血亮紅)
+    color([0.85, 0.1, 0.1, 1.0]) 
+        translate([case_w + 25, case_h + 10, 0]) 
+            joystick_ball_cap();
+    
     // A / B 圓形酒紅鍵帽 (2 顆)
     color([0.78, 0.14, 0.16, 1.0]) 
-        translate([case_w + 25, case_h + 10, 0]) 
+        translate([case_w + 42, case_h + 10, 0]) 
             button_cap_a24();
     color([0.78, 0.14, 0.16, 1.0]) 
-        translate([case_w + 40, case_h + 10, 0]) 
+        translate([case_w + 56, case_h + 10, 0]) 
             button_cap_a24();
     
     // START / PAUSE 膠囊微動鍵帽 (2 顆)
     color([0.3, 0.3, 0.3, 1.0]) 
-        translate([case_w + 58, case_h + 10, 0]) 
+        translate([case_w + 72, case_h + 10, 0]) 
             button_cap_capsule();
     color([0.3, 0.3, 0.3, 1.0]) 
-        translate([case_w + 72, case_h + 10, 0]) 
+        translate([case_w + 86, case_h + 10, 0]) 
             button_cap_capsule();
 
 } else if (view_mode == "exploded") {
-    // 2. 立體爆炸裝配展示：前殼在下、按鍵浮空對位、後蓋在上
+    // 2. 立體爆炸裝配展示：前殼在下、按鍵與街機搖桿浮空對位、後蓋在上
     color([0.22, 0.22, 0.25, 0.85]) 
         front_case();
+    
+    // 街機圓球搖桿套頭浮空對位 (X=14.0, Y=21.5)
+    color([0.85, 0.1, 0.1, 1.0]) 
+        translate([14.0, 21.5, 4.0]) 
+            joystick_ball_cap();
     
     // 按鍵帽浮空對應孔位
     color([0.78, 0.14, 0.16, 1.0]) 
@@ -241,10 +273,15 @@ if (view_mode == "side_by_side") {
     // 4. 單獨後蓋 (按 F6 渲染後可直接匯出 rear_case.stl)
     rear_case();
 
+} else if (view_mode == "joystick_cap_only") {
+    // 5. 單獨街機圓球搖桿套頭 (按 F6 渲染後可直接匯出 joystick_ball_cap.stl)
+    joystick_ball_cap();
+
 } else if (view_mode == "buttons_only") {
-    // 5. 單獨按鍵帽 (按 F6 渲染後可直接匯出 button_caps.stl)
-    translate([0, 0, 0]) button_cap_a24();
+    // 6. 單獨按鍵帽組
+    translate([0, 0, 0]) joystick_ball_cap();
     translate([15, 0, 0]) button_cap_a24();
-    translate([30, 0, 0]) button_cap_capsule();
+    translate([30, 0, 0]) button_cap_a24();
     translate([45, 0, 0]) button_cap_capsule();
+    translate([60, 0, 0]) button_cap_capsule();
 }
